@@ -1,6 +1,7 @@
 package rft.trauma.android;
 
 import com.google.android.maps.MapActivity;
+import com.google.android.maps.MapView;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -19,6 +20,9 @@ public class HelloAndroidActivity extends MapActivity {
         super.onCreate(savedInstanceState);
 		Log.i(TAG, "onCreate");
         setContentView(R.layout.main);
+        
+        MapView mapView = (MapView)findViewById(R.id.main_mapView);
+        mapView.setBuiltInZoomControls(true);
     }
     
     @Override protected boolean isRouteDisplayed()
