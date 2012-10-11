@@ -7,5 +7,5 @@
     android:clickable="true"
     android:apiKey="0oibwmsLu36TICxCB_qItBkqCjMQFX5AwtWtBIA"
     >
-    
+    <ZoomControls />
 </com.google.android.maps.MapView>
