@@ -1,10 +1,10 @@
 package rft.trauma.android;
 
-import android.app.Activity;
+import com.google.android.maps.MapActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-public class HelloAndroidActivity extends Activity {
+public class HelloAndroidActivity extends MapActivity {
 
     private static String TAG = "trauma-android";
 
@@ -20,6 +20,10 @@ public class HelloAndroidActivity extends Activity {
 		Log.i(TAG, "onCreate");
         setContentView(R.layout.main);
     }
-
+    
+    @Override protected boolean isRouteDisplayed()
+    {
+    	return false;
+    }
 }
 
