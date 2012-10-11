@@ -1,3 +1,5 @@
 target/
 trauma-android/target/
 trauma-android/bin/
+trauma-android/make1.bat
+trauma-android/make2.bat

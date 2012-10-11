@@ -12,12 +12,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 
 public class HelloAndroidActivity extends MapActivity {
 
     private static String TAG = "trauma-android";
     MapView mapView = null;
+    private boolean isClick = false;
     
     /**
      * Called when the activity is first created.
@@ -33,18 +35,30 @@ public class HelloAndroidActivity extends MapActivity {
         
         mapView = (MapView)findViewById(R.id.main_mapView);
         mapView.setBuiltInZoomControls(true);
+        mapView.setOnClickListener(onMapClickListener);
         mapView.setOnTouchListener(onMapTouchListener);
-        
     }
+    
+    private OnClickListener onMapClickListener = new OnClickListener()
+	{
+		@Override public void onClick(View v)
+		{
+			Log.i(TAG, "isClick = true");
+			isClick = true;
+		}
+	};
     
     /** Gets the longitude and latitude from tap, starts a new PlaceMarkerActivity with the coordinates */
     private OnTouchListener onMapTouchListener = new OnTouchListener()
 	{
 		@Override public boolean onTouch(View v, MotionEvent event)
 		{
+			Log.i(TAG, "touch caught");
 			GeoPoint point = null;
-			if (event.getAction() == MotionEvent.ACTION_UP)
+			if (isClick)
 			{
+				isClick = false;
+				Log.i(TAG, "action up");
 				point = mapView.getProjection().fromPixels((int)event.getX(), (int)event.getY());
 				int longitude = point.getLongitudeE6();
 				int latitude = point.getLatitudeE6();
@@ -52,6 +66,7 @@ public class HelloAndroidActivity extends MapActivity {
 				intent.putExtra("longitude", longitude);
 				intent.putExtra("latitude", latitude);
 				startActivity(intent);
+				return true;
 			}
 			return false;
 		}
