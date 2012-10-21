@@ -1,5 +1,9 @@
 package rft.trauma.android.machine;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import org.json.simple.JSONObject;
+
 /**
  * Gets the list of Markers from a file, emulating a server environment
  * @author Nagy Gergo
@@ -7,8 +11,13 @@ package rft.trauma.android.machine;
  */
 public class FileMarkerProvider implements IMarkerProvider
 {
+	/**The path of the database file*/
 	private String basePath;
 	
+	/**
+	 * Makes a new FileMarkerProvider object
+	 * @param basePath Path of the database file
+	 */
 	public FileMarkerProvider(String basePath)
 	{
 		this.basePath = basePath;
@@ -21,8 +30,24 @@ public class FileMarkerProvider implements IMarkerProvider
 	 */
 	@Override public boolean placeMarker(Marker marker)
 	{
-		// TODO Auto-generated method stub
-		return false;
+		JSONObject obj = new JSONObject();
+		obj.put("longitude", marker.getLongitudeE6());
+		obj.put("latitude", marker.getLatitudeE6());
+		obj.put("description", marker.getDescription());
+		
+		try
+		{
+			FileWriter file = new FileWriter(basePath);
+			file.write(obj.toJSONString());
+			file.flush();
+			file.close();
+		}
+		catch(IOException ex)
+		{
+			ex.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 	
 	/**
