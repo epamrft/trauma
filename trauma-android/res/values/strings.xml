@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">TrAUMa</string>
-    <string name="place_marker">Place Marker</string>
-    <string name="longitude">Longitude:</string>
-    <string name="latitude">Latitude:</string>
 </resources>
