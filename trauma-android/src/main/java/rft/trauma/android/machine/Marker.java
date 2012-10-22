@@ -53,4 +53,11 @@ public class Marker extends GeoPoint
 		this.description = description;
 	}
 	
+	/**
+	 * Returns the String version of the GeoPoint
+	 */
+	@Override public String toString()
+	{
+		return "lat:"+ getLatitudeE6() +";lon:"+ getLongitudeE6() + ";des:" + getDescription();
+	}
 }

@@ -1,5 +1,7 @@
 package rft.trauma.android.machine;
 
+import java.util.List;
+
 /**
  * This interface provides communication between the back-end server and the Android app
  * @author Nagy Gergo
@@ -20,5 +22,5 @@ public interface IMarkerProvider
 	 * @param radius The radius
 	 * @return Returns a list of Markers that can be found in the circle
 	 */
-	public Marker[] getMarker(int longitude, int latitude, int radius);
+	public List<Marker> getMarker(int longitude, int latitude, int radius);
 }
