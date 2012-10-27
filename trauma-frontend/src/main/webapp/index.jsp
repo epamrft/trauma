@@ -4,13 +4,7 @@
     <title>Google Maps JavaScript API v3 Example: Map Simple</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <style>
-      html, body, #map_canvas {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="frontend.css" />
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script>
       var map;
@@ -28,6 +22,21 @@
     </script>
   </head>
   <body>
-    <div id="map_canvas"></div>
+  
+  	
+  	
+  		<div id="header">
+  		LOGO COMES HERE
+  		</div>
+  		
+  		
+    	<div id="map_canvas"></div>
+    	
+    	<div id="footer">
+    	Powered by pure awesomeness.
+    	</div>
+    	
+	
+   
   </body>
 </html>
