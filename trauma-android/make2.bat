@@ -1,1 +1,0 @@
-adb install -r target\trauma-android-1.apk
