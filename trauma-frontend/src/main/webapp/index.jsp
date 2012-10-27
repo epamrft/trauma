@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Google Maps JavaScript API v3 Example: Map Simple</title>
+    <title>Trauma MAP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="frontend.css" />
@@ -23,20 +23,20 @@
   </head>
   <body>
   
-  	
+
   	
   		<div id="header">
   		LOGO COMES HERE
   		</div>
   		
-  		
+
     	<div id="map_canvas"></div>
     	
     	<div id="footer">
     	Powered by pure awesomeness.
     	</div>
     	
-	
+
    
   </body>
 </html>
