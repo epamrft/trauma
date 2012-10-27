@@ -30,3 +30,8 @@ Installing
 3a. To install the application to your Android smartphone/Virtual Device navigate to the target folder, find the *.apk file (if it had the name trauma.apk) and write `adb install trauma.apk`
 	OR
 3b. If you already have the application and you want to update it `adb install -r trauma.apk`
+
+************************
+Misc
+************************
+Files and folders like project.properties, .settings/, gen/, etc. are left in the repository intentionally, they are needed by the Android SDK
