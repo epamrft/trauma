@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>rft.trauma.android</groupId>
     <artifactId>trauma-android</artifactId>
-    <version>1</version>
+    <version>1.0</version>
     <packaging>apk</packaging>
     <name>trauma-android</name>
 
@@ -19,17 +19,6 @@
             <artifactId>android</artifactId>
             <version>${platform.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.android.maps</groupId>
-            <artifactId>maps</artifactId>
-            <version>1.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1</version>
         </dependency>
     </dependencies>
 

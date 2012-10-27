@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TrAUMa</string>
+    <string name="hello">Hello trauma-android!</string>
+    <string name="app_name">trauma-android</string>
 </resources>
