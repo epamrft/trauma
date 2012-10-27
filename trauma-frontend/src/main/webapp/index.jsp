@@ -26,14 +26,14 @@
 
   	
   		<div id="header">
-  		LOGO COMES HERE
+  		<img src="trauma.png" alt="TRAUMA LOGO" height="60">
   		</div>
   		
 
     	<div id="map_canvas"></div>
     	
     	<div id="footer">
-    	Powered by pure awesomeness.
+    	<img src="trauma.png" alt="TRAUMA LOGO" height="60">
     	</div>
     	
 
