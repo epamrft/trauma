@@ -3,3 +3,8 @@ trauma-android/target/
 trauma-android/bin/
 trauma-android/make1.bat
 trauma-android/make2.bat
+trauma-android/.classpath
+trauma-android/.project
+trauma-android/.settings/
+trauma-android/default.properties
+trauma-android/gen/
