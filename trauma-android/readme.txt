@@ -12,8 +12,8 @@ Getting started
 5. Set environment variable ANDROID_HOME to the path of your installed Android SDK
 6. Add %ANDROID_HOME%/tools and %ANDROID_HOME%/platform_tools to your $PATH
 7. Set environment variable JAVA_HOME to the path of your java sdk folder
-8. Using Android SDK Manager to download the SDK Platform and Google APIs for Android 2.3.3 (API 10). Also download the USB Driver.
-9. Using the Android Virtual Device Manager create a new Android Virtual Device, name it Android10, set the target attributa to Google APIs (Google Inc.) - API Level 10. Set the SD Card size to a minimum of 50 MiB
+8. Using Android SDK Manager download the SDK Platform and Google APIs for Android 2.3.3 (API 10). Also download the USB Driver.
+9. Using the Android Virtual Device Manager create a new Android Virtual Device, name it Android10, set the target attribute to Google APIs (Google Inc.) - API Level 10. Set the SD Card size to a minimum of 50 MiB
 10. Open a command prompt and enter the following:
 	`mvn install:install-file -Dfile=%ANDROID_HOME%/add-ons/addon-google_apis-google-10/libs/maps.jar -DgroupId=com.google.android.maps -DartifactId=maps -Dversion=1.0 -Dpackaging=jar`
 11. Download the trauma-android project from GitHub using Git
