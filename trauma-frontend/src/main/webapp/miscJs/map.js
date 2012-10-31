@@ -23,6 +23,11 @@ var Map = Class.create({
     }
 
     var map = new google.maps.Map(element, mapOptions);
+	this.addContextMenu(map);
+
+	}
+
+    addContextMenu: function(map){
 
     var contextMenuOptions={}; 
   	contextMenuOptions.classNames={menu:'context_menu', menuSeparator:'context_menu_separator'};
@@ -32,12 +37,13 @@ var Map = Class.create({
   	menuItems.push({className:'context_menu_item', eventName:'add_marker_map', label:'Add marker here'});
   	contextMenuOptions.menuItems=menuItems;
 
-  	var contextMenu=new ContextMenu(element, contextMenuOptions);
+  	var contextMenu=new ContextMenu(map, contextMenuOptions);
   
-  		google.maps.event.addListener(element, 'rightclick', function(mouseEvent){
+  		google.maps.event.addListener(map, 'rightclick', function(mouseEvent){
 		contextMenu.show(mouseEvent.latLng);
-		
+
 	});
 
   }
+
 });
