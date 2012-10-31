@@ -35,8 +35,18 @@
 	</div>
 
 	<script>
-		var map = new Map();
-		map.init(document.getElementById("map_canvas"));
+
+		function initMap(p) {
+  		var map = new Map();
+  		map.init(document.getElementById("map_canvas"), p);
+ 		}
+ 
+ 		if(geo_position_js.init()) {
+  		geo_position_js.getCurrentPosition(initMap,function(){/*Ide jon az errorhandling*/},{enableHighAccuracy:true});
+ 		} else {
+ 		//Ide jon az error handling
+ 		}
+
 	</script>
 	
 </body>
