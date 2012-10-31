@@ -24,8 +24,8 @@ public class HomeController {
 
 		Collection<Marker> markers = new LinkedList<Marker>();
 
-		for (int i = 0; i < 30; i++) {
-			markers.add(new Marker("Marker" + String.valueOf(i)));
+		for (int i = 0; i < 10; i++) {
+			markers.add(new Marker(i,i*10,i*i,"Marker" + String.valueOf(i)));
 		}
 
 		return markers;
