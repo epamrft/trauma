@@ -17,15 +17,8 @@
 	
 	<script>
 
-	if(geo_position_js.init())
-	{
-	geo_position_js.getCurrentPosition(show_position,function(){/*Ide jon az errorhandling*/},{enableHighAccuracy:true});
-	}
-	
-	else
-	{
-		//Ide jon az error handling
-	}
+	var map = new Map();
+	map.init(document.getElementById("map_canvas"));
 		
 	$(document).ready(function () {
 		$('#logo').delay(1000).fadeIn(3000);

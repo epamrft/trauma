@@ -1,4 +1,4 @@
-var map = Class.create({
+var Map = Class.create({
   initialize: function() {
    
   },
@@ -6,14 +6,14 @@ var map = Class.create({
     
   	var mapOptions = {
 
-	streetViewControl: false,
-	panControl: false,
-	zoomControl: true,
-	zoom: 14,
-	mapTypeId: google.maps.MapTypeId.ROADMAP,
-	zoomControlOptions: {
-	style: google.maps.ZoomControlStyle.LARGE,
-	position: google.maps.ControlPosition.TOP_RIGHT
+			streetViewControl: false,
+			panControl: false,
+			zoomControl: true,
+			zoom: 14,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			zoomControlOptions: {
+			style: google.maps.ZoomControlStyle.LARGE,
+			position: google.maps.ControlPosition.TOP_RIGHT
 		}	
       
     }

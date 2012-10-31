@@ -46,21 +46,7 @@ function initMarker (latLng, title, desc, mapToPlace) {
 	
 /*WORKS DONT MODIFY IF UR DRUNK */
     var latlng = pos;
-    var mapOptions = {
-	streetViewControl: false,
-	panControl: false,
-	zoomControl: true,
-	zoomControlOptions: {
-	style: google.maps.ZoomControlStyle.LARGE,
-	position: google.maps.ControlPosition.TOP_RIGHT
-},
-	
-/*WORKS DONT MODIFY IF UR DRUNK */
-      zoom: 14,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    
 	
 	var contextMenu=new ContextMenu(map, contextMenuOptions);
   
