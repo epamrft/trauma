@@ -7,27 +7,15 @@
 	<link rel="stylesheet" type="text/css" href="frontend.css" />
 	
 	<script src="miscJs/prototype.js" type="text/javascript"></script>
-	<script src="core.js" type="text/javascript"></script>
+
 	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-	<script src="http://code.jquery.com/jquery-latest.js"></script>	
+
 	<script src="miscJs/geo-min.js" type="text/javascript"></script>	
 	<script src="miscJs/context.js"></script>
 	<script src="miscJs/map.js"></script>
-	
-	
-	<script>
-
-	var map = new Map();
-	map.init(document.getElementById("map_canvas"));
 		
-	$(document).ready(function () {
-		$('#logo').delay(1000).fadeIn(3000);
-	});
-	
-
-	</script>
-	
 </head>
+
 <body>
 
 	<img id="logo" src="logo.png" alt="TRAUMA LOGO" height="60">
@@ -46,6 +34,10 @@
 
 	</div>
 
-
+	<script>
+		var map = new Map();
+		map.init(document.getElementById("map_canvas"));
+	</script>
+	
 </body>
 </html>
