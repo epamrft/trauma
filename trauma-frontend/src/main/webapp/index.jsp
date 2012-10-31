@@ -7,11 +7,10 @@
     <link rel="stylesheet" type="text/css" href="frontend.css" />
 	
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="effectsJS/jquery.ui.map.full.min.js" type="text/javascript"></script>
-	<script src="effectsJS/geo-min.js" type="text/javascript"></script>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>	
+	<script src="miscJs/geo-min.js" type="text/javascript"></script>	
+	<script src="miscJs/context.js"></script>
 	<script src="core.js" type="text/javascript"></script>
-	<script src="effectsJS/context.js"></script>
 
 	
 	<script>
