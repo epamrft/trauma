@@ -137,7 +137,7 @@
 				<configuration>
 					<server>mycloudfoundry-instance</server>
 					<target>http://api.cloudfoundry.com</target>
-					<url>#NAME#.cloudfoundry.com</url>
+					<url>trauma.backend.cloudfoundry.com</url>
 					<memory>512</memory>
 				</configuration>
 			</plugin>
