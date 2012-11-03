@@ -6,29 +6,30 @@ public class Marker implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private int id;
-	private float longitude;
-	private float latitude;
+	private float lng;
+	private float lan;
+	private String desc;
 	public float getLongitude() {
-		return longitude;
+		return lng;
 	}
 
 	public void setLongitude(float longitude) {
-		this.longitude = longitude;
+		this.lng = longitude;
 	}
 
 	public float getLatitude() {
-		return latitude;
+		return lan;
 	}
 
 	public void setLatitude(float latitude) {
-		this.latitude = latitude;
+		this.lan = latitude;
 	}
 
 	public int getId() {
 		return id;
 	}
 
-	private String desc;
+
 
 	public Marker() {
 		super();
@@ -39,8 +40,8 @@ public class Marker implements Serializable {
 	public Marker(int id, float longitude, float latitude, String desc) {
 		super();
 		this.id = id;
-		this.longitude = longitude;
-		this.latitude = latitude;
+		this.lng = longitude;
+		this.lan = latitude;
 		this.desc = desc;
 	}
 

@@ -2,11 +2,11 @@ package com.epam.pf.trauma.backend;
 
 public class CentralPoint {
 
-	
 	private float longitude;
 	private float latitude;
 	private float radius;
-	public CentralPoint( float longitude, float latitude, float radius) {
+
+	public CentralPoint(float longitude, float latitude, float radius) {
 		super();
 		this.longitude = longitude;
 		this.latitude = latitude;
@@ -37,9 +37,15 @@ public class CentralPoint {
 		this.radius = radius;
 	}
 
+	public boolean inRadius(Marker marker) {
+		if (this.latitude * this.latitude + this.radius * this.radius < marker.getLatitude() * marker.getLatitude()
+		&& this.longitude * this.longitude + this.radius * this.radius < marker.getLongitude() * marker.getLongitude())
+		{
+			return true;
+		}
 
-	
+		return false;
 
-	
+	}
 
 }
