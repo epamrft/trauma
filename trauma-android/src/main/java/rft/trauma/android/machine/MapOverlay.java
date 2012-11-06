@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.OverlayItem;
 
+/**
+ * A Marker provider overlay for a MapView object
+ * @author Nagy Gergo
+ * @version 1.0.0
+ */
 public class MapOverlay extends ItemizedOverlay<Marker>
 {
 	private ArrayList<Marker> mOverlays = new ArrayList<Marker>();
