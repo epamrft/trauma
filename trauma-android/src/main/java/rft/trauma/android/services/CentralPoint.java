@@ -1,5 +1,7 @@
 package rft.trauma.android.services;
 
+import com.google.android.maps.GeoPoint;
+
 import rft.trauma.android.machine.Marker;
 
 /**
@@ -18,6 +20,11 @@ public class CentralPoint
 		setLatitude(latitude);
 		setLongitude(longitude);
 		setRadius(radius);
+	}
+	
+	public CentralPoint(GeoPoint central, long radius)
+	{
+		this(central.getLongitudeE6(), central.getLatitudeE6(), radius);
 	}
 	
 	public boolean inRadius(Marker marker)
