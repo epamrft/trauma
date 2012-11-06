@@ -74,7 +74,7 @@ public class HomeControllerTest {
 		String desc = "edittest";
 		MvcResult result2 = this.mockMvc.perform(
 				post("/markers/1")
-						.body(this.writer.writeValueAsString(desc).getBytes())
+						.body(desc.getBytes())
 						.contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON)).andReturn();
 
@@ -106,9 +106,7 @@ public class HomeControllerTest {
 						.contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON)).andReturn();
 
-		String saved = reader.readValue(result2.getResponse()
-				.getContentAsString());
-
+		String saved = result2.getResponse().getContentAsString();
 		Assert.assertNotNull(saved);
 		Assert.assertEquals(saved, "200");
 

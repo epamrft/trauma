@@ -4,3 +4,6 @@ trauma-android/bin/
 trauma-android/make1.bat
 trauma-android/make2.bat
 trauma-android/.settings/
+trauma-backend/.settings/
+trauma-backend/.classpath
+trauma-backend/.project

@@ -41,6 +41,7 @@ public class MarkerMemoryDAO implements MarkerDAO {
 
 	@Override
 	public void deleteMarker(int id) {
+		LOGGER.debug("Deleted marker: {}", memoryDatabase.get(Integer.toString(id)));
 		memoryDatabase.remove(Integer.toString(id));
 	}
 
@@ -49,7 +50,7 @@ public class MarkerMemoryDAO implements MarkerDAO {
 		if (memoryDatabase.containsKey(Integer.toString(id))) {
 			memoryDatabase.get(Integer.toString(id)).setDesc(desc);
 		}
-		
+		LOGGER.debug("Edited marker: {}", memoryDatabase.get(Integer.toString(id)));
 		return memoryDatabase.get(Integer.toString(id));
 	}
 
