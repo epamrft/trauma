@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello trauma-android!</string>
-    <string name="app_name">trauma-android</string>
+    
+    <string name="app_name">TrAUMa</string>
+    <string name="longitude">Longitude</string>
+    <string name="latitude">Latitude</string>
+    <string name="address">Address</string>
+    <string name="description">Description</string>
+    <string name="delete_marker">Delete Marker</string>
+    <string name="save_marker">Save Marker</string>
 </resources>

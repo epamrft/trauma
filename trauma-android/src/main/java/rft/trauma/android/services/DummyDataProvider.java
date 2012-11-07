@@ -30,8 +30,8 @@ public class DummyDataProvider implements IDataProvider
 	public List<Marker> getMarkers(CentralPoint centralPoint)
 	{
 		List<Marker> ret = new ArrayList<Marker>();
-		ret.add(new Marker(new GeoPoint(19240000, -99120000), "Marker", "x: 19240000\ny:-99120000\nMexico City dummy traffic jam"));
-		ret.add(new Marker(new GeoPoint(35410000, 139460000), "Marker", "x: 35410000\ny:139460000\nTokyo dummy roadblock"));
+		ret.add(new Marker(new GeoPoint(19240000, -99120000), "Marker", "Mexico City dummy traffic jam"));
+		ret.add(new Marker(new GeoPoint(35410000, 139460000), "Marker", "Tokyo dummy roadblock"));
 		return ret;
 	}
 

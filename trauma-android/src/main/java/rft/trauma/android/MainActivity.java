@@ -70,6 +70,9 @@ public class MainActivity extends MapActivity
     
     private void populateMap()
     {
+    	//int zoomLevel = mapView.getZoomLevel(); // on 1, the equator is 256 px, each level of zoom multiplies by 2 
+    	//GeoPoint mapCenter = mapView.getMapCenter();
+    	
     	CentralPoint centralPoint = new CentralPoint(mapView.getMapCenter(), 20000);
     	List<Marker> markers = dataProvider.getMarkers(centralPoint);
     	for (Iterator<Marker> i = markers.iterator(); i.hasNext();)
