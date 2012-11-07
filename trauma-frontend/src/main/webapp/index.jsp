@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Trauma MAP</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="frontend.css" />
-	
-	<script src="miscJs/prototype.js" type="text/javascript"></script>
+<title>Trauma MAP</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="frontend.css" />
 
-	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="http://script.aculo.us/prototype.js"></script>
+<script type="text/javascript"
+	src="http://script.aculo.us/scriptaculous.js"></script>
+<script type="text/javascript" src="http://script.aculo.us/effects.js"></script>
 
-	<script src="miscJs/geo-min.js" type="text/javascript"></script>	
-	<script src="miscJs/context.js"></script>
-	<script src="miscJs/map.js"></script>
-		
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<script src="miscJs/geo-min.js" type="text/javascript"></script>
+<script src="miscJs/context.js"></script>
+<script src="miscJs/map.js"></script>
+<script src="service.js"></script>
+<script src="effects.js"></script>
+
 </head>
 
 <body>
@@ -23,31 +29,52 @@
 	<div id="map_canvas"></div>
 
 	<div id="footer">
-		<div id="traumaCaption">
-			&lt;TraUMa&gt;
-		</div>
+		<div id="traumaCaption">&lt;TraUMa&gt;</div>
 	</div>
 
-	<div id="descbox">
+	<div id="descbox" style="display: none;">
 
-		<input id="descfield" type="text" value="Here is the text" /> 
-
+		<input type="text" id="geoloc" readonly="readonly"/>
+		<BR>
+		<textarea id="descfield" class="ownWidth" cols="21"></textarea>
+		<BR>
+		<input onclick="saveInfo()" type="button" id="saveBtn" value="Save">
+		<input onclick="cancelProcess()" type="button" id="cancelBtn" value="Cancel">
+		
 	</div>
 
 	<script>
-
 		function initMap(p) {
-  		var map = new Map();
-  		map.init(document.getElementById("map_canvas"), p);
- 		}
- 
- 		if(geo_position_js.init()) {
-  		geo_position_js.getCurrentPosition(initMap,function(){/*Ide jon az errorhandling*/},{enableHighAccuracy:true});
- 		} else {
- 		//Ide jon az error handling
- 		}
+
+			var service = new TraumaService(new Effects());
+			var map = new Map(service);
+			map.init(document.getElementById("map_canvas"), p);
+		}
+
+		if (geo_position_js.init()) {
+			geo_position_js.getCurrentPosition(initMap, function() {/*Ide jon az errorhandling*/
+			}, {
+				enableHighAccuracy : true
+			});
+		} else {
+			//Ide jon az error handling
+		}
+
+
+
+		/*Gombok kezelése TODO*/
+
+		function saveInfo()
+  		{
+    	alert('Saving.');    
+  		}
+
+  		function cancelProcess()
+  		{
+    	alert('Cancel.');    
+  		}
 
 	</script>
-	
+
 </body>
 </html>
