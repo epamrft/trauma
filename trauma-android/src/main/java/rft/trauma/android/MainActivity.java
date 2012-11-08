@@ -66,6 +66,8 @@ public class MainActivity extends MapActivity
 				return false;
 			}
 		});
+        
+        populateMap();
     }
     
     private void populateMap()

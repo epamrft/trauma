@@ -76,6 +76,29 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 		Button saveButton = (Button)descView.findViewById(R.id.markerDescription_saveMarkerButton);
 		Button deleteButton = (Button)descView.findViewById(R.id.markerDescription_deleteMarkerButton);
 		
+		deleteButton.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				IDataProvider provider = ((MainActivity)mContext).getDataProvider();
+				AlertDialog.Builder msgDialog = new AlertDialog.Builder(mContext);
+				
+				int msg = provider.deleteMarker(item);
+				if (msg == 200)
+				{
+					msgDialog.setTitle(v.getResources().getString(R.string.success));
+					msgDialog.setMessage(v.getResources().getString(R.string.good_delete));
+				}
+				else
+				{
+					msgDialog.setTitle(v.getResources().getString(R.string.fail));
+					msgDialog.setMessage(v.getResources().getString(R.string.wrong_delete));
+				}
+				msgDialog.show();
+			}
+		});
+		
 		saveButton.setOnClickListener(new OnClickListener()
 		{
 			@Override
@@ -84,7 +107,7 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 				IDataProvider provider = ((MainActivity)mContext).getDataProvider();
 				AlertDialog.Builder msgDialog = new AlertDialog.Builder(mContext);
 				
-				int msg = provider.editMarker(item, descEditText.getText().toString()); 
+				int msg = provider.editMarker(item, descEditText.getText().toString());
 				if (msg == 200)
 				{
 					msgDialog.setTitle(v.getResources().getString(R.string.success));
@@ -95,6 +118,7 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 					msgDialog.setTitle(v.getResources().getString(R.string.fail));
 					msgDialog.setMessage(v.getResources().getString(R.string.wrong_editing) + " " + Integer.toString(msg));
 				}
+				msgDialog.show();
 			}
 		});
 		
