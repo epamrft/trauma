@@ -7,6 +7,8 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.io.IOException;
@@ -14,7 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import rft.trauma.android.MainActivity;
 import rft.trauma.android.R;
+import rft.trauma.android.services.IDataProvider;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
@@ -30,6 +34,9 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 	
 	private ArrayList<Marker> mOverlays = new ArrayList<Marker>();
 	private Context mContext;
+	
+	private Marker item;
+	private EditText descEditText;
 	
 	public MapOverlay(Drawable defaultMarker, Context context)
 	{
@@ -58,14 +65,38 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 	@Override
 	protected boolean onTap(int index)
 	{
-		Marker item = mOverlays.get(index);
+		item = mOverlays.get(index);
 		AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
 		View descView = LayoutInflater.from(mContext).inflate(R.layout.marker_description, null);
 		
 		EditText longEditText = (EditText)descView.findViewById(R.id.markerDescription_longitudeEditText);
 		EditText latEditText = (EditText)descView.findViewById(R.id.markerDescription_latitudeEditText);
 		EditText addressEditText = (EditText)descView.findViewById(R.id.markerDescription_addressEditText);
-		EditText descEditText = (EditText)descView.findViewById(R.id.markerDescription_descriptionEditText);
+		descEditText = (EditText)descView.findViewById(R.id.markerDescription_descriptionEditText);
+		Button saveButton = (Button)descView.findViewById(R.id.markerDescription_saveMarkerButton);
+		Button deleteButton = (Button)descView.findViewById(R.id.markerDescription_deleteMarkerButton);
+		
+		saveButton.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				IDataProvider provider = ((MainActivity)mContext).getDataProvider();
+				AlertDialog.Builder msgDialog = new AlertDialog.Builder(mContext);
+				
+				int msg = provider.editMarker(item, descEditText.getText().toString()); 
+				if (msg == 200)
+				{
+					msgDialog.setTitle(v.getResources().getString(R.string.success));
+					msgDialog.setMessage(v.getResources().getString(R.string.good_editing));
+				}
+				else
+				{
+					msgDialog.setTitle(v.getResources().getString(R.string.fail));
+					msgDialog.setMessage(v.getResources().getString(R.string.wrong_editing) + " " + Integer.toString(msg));
+				}
+			}
+		});
 		
 		longEditText.setText(Integer.toString(item.getPoint().getLongitudeE6()));
 		latEditText.setText(Integer.toString(item.getPoint().getLatitudeE6()));
@@ -97,7 +128,7 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 		}
 		catch (IOException ex)
 		{
-			return "";
+			return "error parsing the address";
 		}
 	}
 

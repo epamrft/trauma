@@ -8,4 +8,8 @@
     <string name="description">Description</string>
     <string name="delete_marker">Delete Marker</string>
     <string name="save_marker">Save Marker</string>
+    <string name="fail">Failure!</string>
+    <string name="success">Success!</string>
+    <string name="wrong_editing">Something went wrong during the editing process.\nError code:</string>
+    <string name="good_editing">The Marker was successfully edited.</string>
 </resources>

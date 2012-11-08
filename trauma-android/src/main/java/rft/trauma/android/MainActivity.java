@@ -86,5 +86,10 @@ public class MainActivity extends MapActivity
         return false;
     }
 
+	public IDataProvider getDataProvider()
+	{
+		return dataProvider;
+	}
+
 }
 
