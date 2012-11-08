@@ -5,10 +5,10 @@ Deployment guide for the trauma-android project
 ************************
 Getting started
 ************************
-1. Install JDK 1.6 or above (http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-2. Install the Android SDK (http://developer.android.com/sdk/index.html)
-3. Install Maven (http://maven.apache.org/)
-4. Install Git (http://git-scm.com/)
+1. Install JDK 1.6 or above
+2. Install the Android SDK
+3. Install Maven
+4. Install Git
 5. Set environment variable ANDROID_HOME to the path of your installed Android SDK
 6. Add %ANDROID_HOME%/tools and %ANDROID_HOME%/platform_tools to your $PATH
 7. Set environment variable JAVA_HOME to the path of your java sdk folder
@@ -30,6 +30,28 @@ Installing
 3a. To install the application to your Android smartphone/Virtual Device navigate to the target folder, find the *.apk file (if it had the name trauma.apk) and write `adb install trauma.apk`
 	OR
 3b. If you already have the application and you want to update it `adb install -r trauma.apk`
+
+************************
+Help and links
+************************
+- Java SDK: http://www.oracle.com/technetwork/java/javase/downloads/index.html
+- Android sdk: http://developer.android.com/sdk/index.html
+- Maven: http://maven.apache.org/
+- Git: http://git-scm.com/
+- Help with setting environment variables: http://www.itechtalk.com/thread3595.html
+- If you need help downloading the project from GitHub, see the Downloading from GitHub section below
+- Introduction to Windows Command Promt: http://www.bleepingcomputer.com/tutorials/windows-command-prompt-introduction/
+
+************************
+Downloading from GitHub
+************************
+To download the trauma project from GitHub, follow these steps:
+1. Open a command promt and navigate to your desired download directory
+2. Make a new folder for the project using the `mkdir trauma` command
+3. Navigate to the new folder and execute the `git init` command
+4. Add the location of the trauma project to Git using the `git remote add trauma https://github.com/epamrft/trauma.git` command
+5. Download the files to your local repo using the `git pull trauma master` command
+6. Check out the files from your local repo using the git checkout command
 
 ************************
 Misc
