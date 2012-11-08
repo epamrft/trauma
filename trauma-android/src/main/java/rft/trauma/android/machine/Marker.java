@@ -7,9 +7,10 @@ public class Marker extends OverlayItem
 {	
 	private int id;
 	
-	public Marker(GeoPoint point, String title, String snippet)
+	public Marker(int id, GeoPoint point, String title, String snippet)
 	{
 		super(point, title, snippet);
+		this.setId(id);
 	}
 
 	public int getId()

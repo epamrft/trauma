@@ -15,36 +15,49 @@ import rft.trauma.android.machine.Marker;
  */
 public class DummyDataProvider implements IDataProvider
 {
+	List<Marker> dummyList;
 	
 	public DummyDataProvider()
 	{
+		dummyList = new ArrayList<Marker>();
+		dummyList.add(new Marker(1, new GeoPoint(19240000, -99120000), "Marker", "Mexico City dummy traffic jam"));
+		dummyList.add(new Marker(2, new GeoPoint(35410000, 139460000), "Marker", "Tokyo dummy roadblock"));
 	}
 
 	@Override
 	public int addMarker(Marker marker)
 	{
-		return this.msgGenerator();
+		int msg = this.msgGenerator();
+		if (msg != 5) dummyList.add(marker);
+		return msg;
 	}
 
 	@Override
 	public List<Marker> getMarkers(CentralPoint centralPoint)
 	{
-		List<Marker> ret = new ArrayList<Marker>();
-		ret.add(new Marker(new GeoPoint(19240000, -99120000), "Marker", "Mexico City dummy traffic jam"));
-		ret.add(new Marker(new GeoPoint(35410000, 139460000), "Marker", "Tokyo dummy roadblock"));
-		return ret;
+		return dummyList;
 	}
 
 	@Override
 	public int deleteMarker(Marker marker)
 	{
-		return this.msgGenerator();
+		int msg = this.msgGenerator();
+		if (msg != 5)
+		{
+			dummyList.remove(marker);
+		}
+		return msg;
 	}
 
 	@Override
 	public int editMarker(Marker marker, String description)
 	{
-		return this.msgGenerator();
+		int msg = this.msgGenerator();
+		if (dummyList.contains(marker))
+		{
+			dummyList.set(dummyList.indexOf(marker), new Marker(marker.getId(), marker.getPoint(), marker.getTitle(), description));
+		}
+		return msg;
 	}
 
 	private int msgGenerator()
