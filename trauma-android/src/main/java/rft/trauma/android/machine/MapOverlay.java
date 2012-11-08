@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,10 +19,12 @@ import java.util.Locale;
 
 import rft.trauma.android.MainActivity;
 import rft.trauma.android.R;
+import rft.trauma.android.services.CentralPoint;
 import rft.trauma.android.services.IDataProvider;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
+import com.google.android.maps.MapView;
 
 /**
  * A Marker provider overlay for a MapView object
@@ -30,7 +33,7 @@ import com.google.android.maps.ItemizedOverlay;
  */
 public class MapOverlay extends ItemizedOverlay<Marker>
 {
-	//private final String TAG = "trauma-android";
+	private final String TAG = "trauma-android";
 	
 	private ArrayList<Marker> mOverlays = new ArrayList<Marker>();
 	private Context mContext;
@@ -44,10 +47,23 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 		mContext = context;
 	}
 
-	public void addOverlay(Marker overlay)
+	public boolean addOverlay(Marker overlay)
 	{
-		mOverlays.add(overlay);
+		boolean ret = mOverlays.add(overlay);
 		populate();
+		return ret;
+	}
+	
+	public boolean deleteOverlay(Marker overlay)
+	{
+		boolean ret = mOverlays.remove(overlay);
+		populate();
+		return ret;
+	}
+	
+	public boolean containsOverlay(Marker overlay)
+	{
+		return mOverlays.contains(overlay);
 	}
 	
 	@Override
@@ -96,6 +112,19 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 					msgDialog.setMessage(v.getResources().getString(R.string.wrong_delete));
 				}
 				msgDialog.show();
+				
+				/**
+				 * Log!
+				 */
+				{
+					MainActivity ma = (MainActivity)mContext;
+					MapView mv = (MapView)ma.findViewById(R.id.mapView);
+					CentralPoint cp = new CentralPoint(mv.getMapCenter(), 20000);
+					Log.i(TAG, Integer.toString(provider.getMarkers(cp).size()));
+				}
+				/**
+				 * Log end!
+				 */
 			}
 		});
 		

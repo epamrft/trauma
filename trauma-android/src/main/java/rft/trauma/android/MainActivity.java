@@ -77,9 +77,12 @@ public class MainActivity extends MapActivity
     	
     	CentralPoint centralPoint = new CentralPoint(mapView.getMapCenter(), 20000);
     	List<Marker> markers = dataProvider.getMarkers(centralPoint);
+    	
     	for (Iterator<Marker> i = markers.iterator(); i.hasNext();)
     	{
-    		mapOverlay.addOverlay(i.next());
+    		Marker m = i.next();
+    		if (!(mapOverlay.containsOverlay(m)));
+    			mapOverlay.addOverlay(i.next());
     	}
     }
     
