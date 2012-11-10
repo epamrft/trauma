@@ -8,6 +8,7 @@ import org.codehaus.jackson.map.ObjectReader;
 import org.codehaus.jackson.map.ObjectWriter;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.server.MockMvc;
 import org.springframework.test.web.server.MvcResult;
@@ -106,9 +107,9 @@ public class HomeControllerTest {
 						.contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON)).andReturn();
 
-		String saved = result2.getResponse().getContentAsString();
+		int saved = result2.getResponse().getStatus();
 		Assert.assertNotNull(saved);
-		Assert.assertEquals(saved, "200");
+		Assert.assertEquals(saved, 200);
 
 	}
 
