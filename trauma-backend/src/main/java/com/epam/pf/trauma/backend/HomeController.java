@@ -34,9 +34,9 @@ public class HomeController {
 	@RequestMapping(value = "/markers", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
-	public Collection<Marker> getMarkers(@RequestParam(value = "central-lan", required=false, defaultValue="999999999") float centrallan, @RequestParam(value = "central-lng" ,required=false,defaultValue="999999999") float centrallng,
+	public Collection<Marker> getMarkers(@RequestParam(value = "central-lan", required=false, defaultValue="0") float centrallan, @RequestParam(value = "central-lng" ,required=false,defaultValue="0") float centrallng,
 			@RequestParam(value = "central-rad", required=false,defaultValue="999999999") float centralrad){
-		if(centrallan==999999999) return markerService.getMarkers();
+		if(centrallan==0&&centrallan==0&&centralrad==999999999) return markerService.getMarkers();
 		else
 		return markerService.getMarkers(new CentralPoint(centrallan, centrallng, centralrad));
 	}
