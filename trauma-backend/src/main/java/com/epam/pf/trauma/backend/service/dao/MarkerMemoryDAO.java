@@ -40,6 +40,17 @@ public class MarkerMemoryDAO implements MarkerDAO {
 
 		return markers;
 	}
+	@Override
+	public Collection<Marker> getMarkers() {
+		Collection<Marker> markers = new LinkedList<Marker>();
+		for (Marker marker : memoryDatabase.values()) {
+			
+				markers.add(marker);
+			
+		}
+
+		return markers;
+	}
 
 	@Override
 	public void deleteMarker(int id) {

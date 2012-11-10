@@ -11,4 +11,5 @@ public interface MarkerDAO {
  public Collection<Marker> getMarkers(CentralPoint centralPoint);
  public void deleteMarker(int id);
  public Marker editMarker(int id, String desc);
+public Collection<Marker> getMarkers();
 }

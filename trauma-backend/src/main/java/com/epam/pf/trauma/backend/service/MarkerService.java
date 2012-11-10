@@ -31,6 +31,13 @@ public class MarkerService {
 
 		return markers;
 	}
+	public Collection<Marker> getMarkers() {
+		LOGGER.debug("get all markers: {}");
+		Collection<Marker> markers = markerDAO.getMarkers();
+		LOGGER.debug("size of founded markers: {}", markers.size());
+
+		return markers;
+	}
 
 	public void deleteMarker(int id) {
 		markerDAO.deleteMarker(id);
