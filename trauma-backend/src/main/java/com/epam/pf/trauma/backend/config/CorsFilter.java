@@ -14,15 +14,13 @@ public class CorsFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 		
-		if (request.getHeader("Access-Control-Request-Method") == null && "GET".equals(request.getMethod())) {
-			response.addHeader("Access-Control-Allow-Origin", "*");
-		}
+		response.addHeader("Access-Control-Allow-Origin", "*");
 		
 		if (request.getHeader("Access-Control-Request-Method") != null && "OPTIONS".equals(request.getMethod())) {
-			response.addHeader("Access-Control-Allow-Origin", "*");
 			response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-			response.addHeader("Access-Control-Allow-Headers", "origin, x-prototype-version, x-requested-with,content-type, accept");
+			response.addHeader("Access-Control-Allow-Headers", "origin, x-prototype-version, x-requested-with, content-type, accept");
 		}
+
 		filterChain.doFilter(request, response);
 	}
 }
