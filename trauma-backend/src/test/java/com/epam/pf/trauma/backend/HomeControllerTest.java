@@ -50,6 +50,7 @@ public class HomeControllerTest {
 						.contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON)).andReturn();
 		// @formatter:on
+		
 		Marker savedMarker = reader.readValue(result.getResponse()
 				.getContentAsString());
 

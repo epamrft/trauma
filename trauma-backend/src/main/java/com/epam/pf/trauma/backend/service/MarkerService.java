@@ -34,7 +34,7 @@ public class MarkerService {
 	public Collection<Marker> getMarkers() {
 		LOGGER.debug("get all markers: {}");
 		Collection<Marker> markers = markerDAO.getMarkers();
-		LOGGER.debug("size of founded markers: {}", markers.size());
+		LOGGER.debug("number of found markers: {}", markers.size());
 
 		return markers;
 	}
