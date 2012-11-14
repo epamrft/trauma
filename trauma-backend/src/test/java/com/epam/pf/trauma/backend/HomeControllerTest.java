@@ -44,7 +44,7 @@ public class HomeControllerTest {
 
 		// @formatter:off
 		MvcResult result = this.mockMvc.perform(
-				put("/markers")
+				post("/markers")
 						.body(this.writer.writeValueAsString(newMarker)
 								.getBytes())
 						.contentType(MediaType.APPLICATION_JSON)
@@ -67,14 +67,14 @@ public class HomeControllerTest {
 		Marker newMarker = new Marker(42, 42, "test");
 
 		MvcResult result = this.mockMvc.perform(
-				put("/markers")
+				post("/markers")
 						.body(this.writer.writeValueAsString(newMarker)
 								.getBytes())
 						.contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON)).andReturn();
 		String desc = "edittest";
 		MvcResult result2 = this.mockMvc.perform(
-				post("/markers/1")
+				put("/markers/1")
 						.body(desc.getBytes())
 						.contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON)).andReturn();
@@ -95,7 +95,7 @@ public class HomeControllerTest {
 		Marker newMarker = new Marker(42, 42, "test");
 
 		MvcResult result = this.mockMvc.perform(
-				put("/markers")
+				post("/markers")
 						.body(this.writer.writeValueAsString(newMarker)
 								.getBytes())
 						.contentType(MediaType.APPLICATION_JSON)

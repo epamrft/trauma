@@ -48,14 +48,14 @@ public class HomeController {
 		markerService.deleteMarker(id);
 	}
 
-	@RequestMapping(value = "/markers/{id}", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/markers/{id}", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public Marker editMarker(@PathVariable("id") int id, @RequestBody String desc) {
 		return markerService.editMarker(id, desc);
 	}
 
-	@RequestMapping(value = "/markers", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/markers", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseStatus( HttpStatus.CREATED )
 	@ResponseBody
 	public Marker addMarker(@RequestBody Marker marker) {
