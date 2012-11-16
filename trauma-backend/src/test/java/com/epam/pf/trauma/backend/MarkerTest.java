@@ -4,6 +4,7 @@ import static org.springframework.test.web.server.request.MockMvcRequestBuilders
 import static org.springframework.test.web.server.request.MockMvcRequestBuilders.put;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import junit.framework.Assert;
@@ -30,105 +31,85 @@ public class MarkerTest {
 
 	private ObjectWriter writer;
 
-	private ObjectReader reader;
+	private ObjectReader arrayReader;
 
-	@Before
-	public void setup() throws Exception{
-		ObjectMapper objectMapper = new ObjectMapper();
-		this.writer = objectMapper.typedWriter(Marker.class);
-		this.reader = objectMapper.reader(Marker.class);
-
-		this.mockMvc = MockMvcBuilders.annotationConfigSetup(AppConfig.class,
-				WebMvcConfig.class).build();
-	
-		Marker testMarker = new Marker(42, 42, "test1");
-		Marker testMarker2 = new Marker(-42, 42, "test2");
-		Marker testMarker3 = new Marker(42, -42, "test3");
-		Marker testMarker4 = new Marker(-42, -42, "test4");
-		Marker testMarker5 = new Marker(1.123123f, 0.32423f, "test5");
-		
-		this.mockMvc.perform(
-				post("/markers")
-						.body(this.writer.writeValueAsString(testMarker)
-								.getBytes())
-						.contentType(MediaType.APPLICATION_JSON)
-						.accept(MediaType.APPLICATION_JSON)).andReturn();
-	
-	this.mockMvc.perform(
-			post("/markers")
-					.body(this.writer.writeValueAsString(testMarker2)
-							.getBytes())
-					.contentType(MediaType.APPLICATION_JSON)
-					.accept(MediaType.APPLICATION_JSON)).andReturn();
-	
-	this.mockMvc.perform(
-			post("/markers")
-					.body(this.writer.writeValueAsString(testMarker3)
-							.getBytes())
-					.contentType(MediaType.APPLICATION_JSON)
-					.accept(MediaType.APPLICATION_JSON)).andReturn();
-	this.mockMvc.perform(
-			post("/markers")
-					.body(this.writer.writeValueAsString(testMarker4)
-							.getBytes())
-					.contentType(MediaType.APPLICATION_JSON)
-					.accept(MediaType.APPLICATION_JSON)).andReturn();
-	this.mockMvc.perform(
-			post("/markers")
-					.body(this.writer.writeValueAsString(testMarker5)
-							.getBytes())
-					.contentType(MediaType.APPLICATION_JSON)
-					.accept(MediaType.APPLICATION_JSON)).andReturn();
-	
-	
-	
-	
-	
-	
-}
-
-	@Test
-	public void testGetMarkers() throws Exception {
-
-
-		
-		
-		
-
-		MvcResult result1 = this.mockMvc.perform(
-				get("/markers")
-						
-						.contentType(MediaType.APPLICATION_JSON)
-						.accept(MediaType.APPLICATION_JSON)).andReturn();
-		String listOfMarkers = result1.getResponse().getContentAsString();
-		listOfMarkers=listOfMarkers.substring(1, listOfMarkers.length()-1);
-		List<Marker> markers = new ArrayList<Marker>();
-		String markerString[];
-		System.out.println(listOfMarkers);
-		markerString=listOfMarkers.split(",");
-		int i = 0;
-		String s="";
-		for (String string : markerString) {
-			
-			i++;if(i==1)s="".concat(string);
-			else s=s.concat(","+string);
-			if(i==4) i=0;
-			System.out.println(s);
-			if (i==0) {Marker marker= reader.readValue(string);
-			markers.add(marker);}
-		}
-		//{"longitude":42.0,"latitude":42.0,"id":1,"desc":"test"}
-			
-			
-			
-			
-			
-			
-		
-		
-		Assert.assertEquals(markers.size(),5);
+	private void addMarker(Marker marker) throws Exception {
+		this.mockMvc
+				.perform(
+						post("/markers")
+								.body(this.writer.writeValueAsString(marker)
+										.getBytes())
+								.contentType(MediaType.APPLICATION_JSON)
+								.accept(MediaType.APPLICATION_JSON))
+				.andReturn();
 
 	}
 
+	private Marker[] getMarkersWithCentral(float lan, float lng, float rad)
+			throws Exception {
+
+		MvcResult result = this.mockMvc.perform(
+				get(
+						"/markers?central-lan=" + lan + "&central-lng=" + lng
+								+ "&central-rad=" + rad).contentType(
+						MediaType.APPLICATION_JSON).accept(
+						MediaType.APPLICATION_JSON)).andReturn();
+		String listOfMarkers = result.getResponse().getContentAsString();
+
+		return (Marker[]) arrayReader.readValue(listOfMarkers);
+	}
+
+	private Marker[] getMarkersWithOutCentral() throws Exception {
+
+		MvcResult result = this.mockMvc.perform(
+				get("/markers").contentType(MediaType.APPLICATION_JSON).accept(
+						MediaType.APPLICATION_JSON)).andReturn();
+		String listOfMarkers = result.getResponse().getContentAsString();
+
+		return (Marker[]) arrayReader.readValue(listOfMarkers);
+	}
+
+	@Before
+	public void setup() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper();
+		this.writer = objectMapper.typedWriter(Marker.class);
+		this.arrayReader = objectMapper.reader(Marker[].class);
+
+		this.mockMvc = MockMvcBuilders.annotationConfigSetup(AppConfig.class,
+				WebMvcConfig.class).build();
+
+		addMarker(new Marker(42, 42, "test1"));
+		addMarker(new Marker(-42, 42, "test2"));
+		addMarker(new Marker(42, -42, "test3"));
+		addMarker(new Marker(-42, -42, "test4"));
+		addMarker(new Marker(1.123123f, 0.32423f, "test5"));
+	}
+
+	@Test
+	public void testGetMarkersWithoutCentral() throws Exception {
+		Marker[] markers = getMarkersWithOutCentral();
+		Assert.assertEquals(5, markers.length);
+	}
+
+	@Test
+	public void testGetMarkersWithCentral() throws Exception {
+		Marker[] markers = getMarkersWithCentral(40, 40, 20);
+		Assert.assertEquals(1, markers.length);
+
+	}
+
+	@Test
+	public void testDeleteMarkerWhenMarkerIsValid() throws Exception {
+
+		MvcResult deleteresult = this.mockMvc.perform(
+				delete("/markers/1").contentType(MediaType.APPLICATION_JSON)
+						.accept(MediaType.APPLICATION_JSON)).andReturn();
+
+		int saved = deleteresult.getResponse().getStatus();
+		Assert.assertEquals(200, saved);
+		
+		Marker[] markers = getMarkersWithOutCentral();
+		Assert.assertEquals(4, markers.length);
+	}
 
 }
