@@ -1,8 +1,7 @@
 var Map = Class.create({
 
-	initialize : function(service,comms) {
+	initialize : function(service) {
 		this.service = service;
-		this.comms = comms;
 	},
 
 	init : function(element, p) {
@@ -30,8 +29,6 @@ var Map = Class.create({
 		var contextMenu = this.addContextMenu(this.map);
 
 		this.addContextListeners(this.map, contextMenu);
-
-		comms.getMatkers();
 
 	},
 
