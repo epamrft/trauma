@@ -15,7 +15,12 @@ public interface IDataProvider
 	 * @param marker The marker to be added
 	 * @return 200 on success, 500 on error
 	 */
-	public int addMarker(Marker marker);
+	public int addMarker(Marker marker);	
+	/**
+	 * Gets all the Markers from the server
+	 * @return returns a list of Markers to be displayed on a MapView
+	 */
+	public List<Marker> getAllMarkers();
 	/**
 	 * Gets a list of Markers based on a centralPoint (usually central point of the screen)
 	 * @param centralPoint central point of the screen

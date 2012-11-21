@@ -38,6 +38,11 @@ public class DummyDataProvider implements IDataProvider
 		return dummyList;
 	}
 
+	public List<Marker> getAllMarkers()
+	{
+		return dummyList;
+	}
+	
 	@Override
 	public int deleteMarker(Marker marker)
 	{

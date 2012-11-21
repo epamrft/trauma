@@ -46,6 +46,7 @@ public final class R {
         public static final int latitude=0x7f040002;
         public static final int longitude=0x7f040001;
         public static final int save_marker=0x7f040006;
+        public static final int server_error=0x7f04000d;
         public static final int success=0x7f040008;
         public static final int wrong_delete=0x7f04000b;
         public static final int wrong_editing=0x7f040009;

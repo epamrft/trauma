@@ -14,4 +14,5 @@
     <string name="good_editing">The Marker was successfully edited.</string>
     <string name="wrong_delete">Something went wrong upon deleting the Marker.\nError code:</string>
     <string name="good_delete">The Marker was successfully deleted.</string>
+    <string name="server_error">An error occured while communicating with the server</string>
 </resources>

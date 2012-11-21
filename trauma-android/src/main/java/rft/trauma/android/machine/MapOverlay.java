@@ -41,6 +41,8 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 	private Marker item;
 	private EditText descEditText;
 	
+	private AlertDialog d = null;
+	
 	public MapOverlay(Drawable defaultMarker, Context context)
 	{
 		super(boundCenterBottom(defaultMarker));
@@ -111,6 +113,7 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 					msgDialog.setTitle(v.getResources().getString(R.string.fail));
 					msgDialog.setMessage(v.getResources().getString(R.string.wrong_delete));
 				}
+				if (d != null) d.dismiss();
 				msgDialog.show();
 				
 				/**
@@ -119,8 +122,7 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 				{
 					MainActivity ma = (MainActivity)mContext;
 					MapView mv = (MapView)ma.findViewById(R.id.mapView);
-					CentralPoint cp = new CentralPoint(mv.getMapCenter(), 20000);
-					Log.i(TAG, Integer.toString(provider.getMarkers(cp).size()));
+					Log.i(TAG, Integer.toString(provider.getAllMarkers().size()));
 				}
 				/**
 				 * Log end!
@@ -157,7 +159,7 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 		descEditText.setText(item.getSnippet());
 		
 		dialog.setView(descView);
-		dialog.show();
+		d = dialog.show();
 		dialog.setTitle("Edit Marker description");
 		return true;
 	}
