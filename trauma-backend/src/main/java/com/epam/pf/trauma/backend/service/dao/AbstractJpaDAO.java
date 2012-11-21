@@ -17,7 +17,7 @@ public abstract class AbstractJpaDAO< T extends Serializable > {
 	      this.clazz = clazzToSet;
 	   }
 	 
-	   public T findOne( final Long id ){
+	   public T findOne( final int id ){
 	      return entityManager.find( clazz, id );
 	   }
 	   public List< T > findAll(){
@@ -36,7 +36,7 @@ public abstract class AbstractJpaDAO< T extends Serializable > {
 	   public void delete( final T entity ){
 	      entityManager.remove( entity );
 	   }
-	   public void deleteById( final Long entityId ){
+	   public void deleteById( final int entityId ){
 	      final T entity = findOne( entityId );
 	 
 	      delete( entity );

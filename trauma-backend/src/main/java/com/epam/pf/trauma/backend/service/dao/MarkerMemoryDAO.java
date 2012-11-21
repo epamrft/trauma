@@ -23,8 +23,9 @@ public class MarkerMemoryDAO extends AbstractJpaDAO<Marker> implements MarkerDAO
 
 	@Override
 	public Marker addMarker(Marker marker) {
+		
 		marker.setId(memoryDatabase.size() + 1);
-		memoryDatabase.put(Integer.toString(marker.getId()), marker);
+		this.save(marker);
 		LOGGER.debug("Added marker: {}", marker);
 		return marker;
 	}
@@ -43,19 +44,14 @@ public class MarkerMemoryDAO extends AbstractJpaDAO<Marker> implements MarkerDAO
 	@Override
 	public Collection<Marker> getMarkers() {
 		Collection<Marker> markers = new LinkedList<Marker>();
-		for (Marker marker : memoryDatabase.values()) {
-			
-				markers.add(marker);
-			
-		}
-
+		markers=this.findAll();
 		return markers;
 	}
 
 	@Override
 	public void deleteMarker(int id) {
 		LOGGER.debug("Deleted marker: {}", memoryDatabase.get(Integer.toString(id)));
-		memoryDatabase.remove(Integer.toString(id));
+		this.deleteById(id);
 	}
 
 	@Override
