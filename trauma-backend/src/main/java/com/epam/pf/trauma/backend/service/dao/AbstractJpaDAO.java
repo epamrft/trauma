@@ -37,7 +37,7 @@ public abstract class AbstractJpaDAO< T extends Serializable > {
 	      entityManager.remove( entity );
 	   }
 	   public void deleteById( final Long entityId ){
-	      final T entity = getById( entityId );
+	      final T entity = findOne( entityId );
 	 
 	      delete( entity );
 	   }

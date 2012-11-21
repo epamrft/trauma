@@ -15,7 +15,7 @@ import com.epam.pf.trauma.backend.service.domain.CentralPoint;
 import com.epam.pf.trauma.backend.service.domain.Marker;
 
 @Service
-public class MarkerMemoryDAO implements MarkerDAO {
+public class MarkerMemoryDAO extends AbstractJpaDAO<Marker> implements MarkerDAO {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MarkerMemoryDAO.class);
 	
