@@ -1,7 +1,8 @@
 var Map = Class.create({
 
-	initialize : function(service) {
+	initialize : function(service,comms) {
 		this.service = service;
+		this.comms = comms;
 	},
 
 	init : function(element, p) {
@@ -113,6 +114,9 @@ var Map = Class.create({
 				{
 				geoLocBox.value = results[0].formatted_address;
 				}
+
+				document.getElementById("lat").innerHTML=latLng.lat(); 
+				document.getElementById("lng").innerHTML=latLng.lng(); 
         	}
       	}
 

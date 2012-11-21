@@ -13,12 +13,13 @@
 <script type="text/javascript" src="http://script.aculo.us/effects.js"></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-
+<script type="text/javascript" src="comms.js"></script>
 <script src="miscJs/geo-min.js" type="text/javascript"></script>
 <script src="miscJs/context.js"></script>
 <script src="miscJs/map.js"></script>
 <script src="service.js"></script>
 <script src="effects.js"></script>
+
 
 </head>
 
@@ -34,6 +35,9 @@
 
 	<div id="descbox" style="display: none;">
 
+		<div id="lat"></div>
+		<div id="lng"></div>
+
 		<input type="text" id="geoloc" readonly="readonly"/>
 		<BR>
 		<textarea id="descfield" class="ownWidth" cols="21"></textarea>
@@ -44,10 +48,14 @@
 	</div>
 
 	<script>
+
+
+
 		function initMap(p) {
 
 			var service = new TraumaService(new Effects());
-			var map = new Map(service);
+			var com = new BackendComms();
+			var map = new Map(service,com);
 			map.init(document.getElementById("map_canvas"), p);
 		}
 
@@ -63,15 +71,17 @@
 
 
 		/*Gombok kezelése TODO*/
-
+		
+		
 		function saveInfo()
   		{
-    	alert('Saving.');    
+  		
   		}
 
   		function cancelProcess()
   		{
-    	alert('Cancel.');    
+  		var descEffects = new Effects();
+    	descEffects.hide('descbox');  
   		}
 
 	</script>

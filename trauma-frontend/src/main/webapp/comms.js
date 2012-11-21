@@ -5,18 +5,17 @@ var BackendComms = Class.create({
   },
 
 
-  sendMarker : function (marker) {    
+  sendMarker : function () {    
       
-    new Ajax.Request(this.url,
-      {
-        method:'POST',
-        parameters: '{lan: ' + marker.lan + ', lng: ' + marker.lng +  ', desc: ' + desc + '}',
-
-        onSuccess: function(transport, json){
-            alert(json ? Object.inspect(json) : "no JSON object");
+      new Ajax.Request(this.url, {
+      method: 'post',
+      contentType: 'application/json',
+      postBody: '{ longitude: ' + document.getElementById("lng").innerHTML + ', latitude: ' + document.getElementById("lat").innerHTML + ', desc: ' + document.getElementById("descfield").value +'}',  
+      onSuccess: function(transport) {
+        console.log(transport);
         }
 
-      });
+      });​
 
   },
 

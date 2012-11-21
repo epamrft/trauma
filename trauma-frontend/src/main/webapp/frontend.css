@@ -115,4 +115,8 @@ textarea {
 	bottom: 10px;
 }
 
+#lat, #lng{
+	display: none;
+}
+
 /*END of Description Box Definition*/
