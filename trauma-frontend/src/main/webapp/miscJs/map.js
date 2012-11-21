@@ -31,6 +31,8 @@ var Map = Class.create({
 
 		this.addContextListeners(this.map, contextMenu);
 
+		comms.getMatkers();
+
 	},
 
 	addContextMenu : function(map) {

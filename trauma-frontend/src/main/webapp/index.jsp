@@ -13,8 +13,8 @@
 <script type="text/javascript" src="http://script.aculo.us/effects.js"></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript" src="comms.js"></script>
 <script src="miscJs/geo-min.js" type="text/javascript"></script>
+<script type="text/javascript" src="comms.js"></script>
 <script src="miscJs/context.js"></script>
 <script src="miscJs/map.js"></script>
 <script src="service.js"></script>
@@ -53,17 +53,12 @@
 
 		function initMap(p) {
 
+			var comms = new BackendComms();
 			var service = new TraumaService(new Effects());
-			var com = new BackendComms();
-			var map = new Map(service,com);
+			var map = new Map(service,comms);
 			map.init(document.getElementById("map_canvas"), p);
 
-			function cancelProcess()
-  			{
-  			var descEffects = new Effects();
-    		descEffects.hide('descbox');
-    		map.removeMarker(this.marker); 
-  			}
+			
 
 		}
 
@@ -82,10 +77,16 @@
 		
 		
 		function saveInfo()
-  		{
-  		
-  		}
+  			{
+  			var com = new BackendComms();
+  			com.sendMarker();
+  			}
 
+  		function cancelProcess()
+  			{
+  			var descEffects = new Effects();
+    		descEffects.hide('descbox');
+  			}
 
 
 	</script>

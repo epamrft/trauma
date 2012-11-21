@@ -1,18 +1,26 @@
 var BackendComms = Class.create({
 
   initialize : function() {
-    var url = 'http://trauma.backend.cloudfoundry.com/markers';
+    
   },
 
 
   sendMarker : function () {    
-      
-      new Ajax.Request(this.url, {
+      var url = 'http://trauma.backend.cloudfoundry.com/markers';
+
+      var data = {
+            longitude : document.getElementById("lng").innerHTML,
+            latitude : document.getElementById("lat").innerHTML,
+            desc : document.getElementById("descfield").value
+        };
+
+      new Ajax.Request(url, {
       method: 'post',
       contentType: 'application/json',
-      postBody: '{ longitude: ' + document.getElementById("lng").innerHTML + ', latitude: ' + document.getElementById("lat").innerHTML + ', desc: ' + document.getElementById("descfield").value +'}',  
+      postBody: Object.toJSON(data),  
       onSuccess: function(transport) {
-        console.log(transport);
+        console.log(transport.responseText);
+        $('response').update(transport.responseText);
         }
 
       });
@@ -51,7 +59,31 @@ var BackendComms = Class.create({
   },
 
 
-  getMatkers : function (argument) {
+  getMatkers : function () {
+
+      geo_position_js.getCurrentPosition(p, function() {}, {
+        enableHighAccuracy : true
+      });
+
+      var url = 'http://trauma.backend.cloudfoundry.com/markers';
+
+      var data = {
+            central-lan : p.coords.latitude,
+            central-lng : p.coords.longitude,
+            central-rad : 5.000
+        };
+
+      new Ajax.Request(url, {
+      method: 'get',
+      contentType: 'application/json',
+      postBody: Object.toJSON(data),  
+      onSuccess: function(transport) {
+        console.log(transport.responseText);
+        $('response').update(transport.responseText);
+        }
+
+      });
+
     
   }
 
