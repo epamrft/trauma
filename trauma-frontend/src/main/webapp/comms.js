@@ -15,7 +15,7 @@ var BackendComms = Class.create({
         console.log(transport);
         }
 
-      });​
+      });
 
   },
 

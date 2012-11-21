@@ -57,6 +57,14 @@
 			var com = new BackendComms();
 			var map = new Map(service,com);
 			map.init(document.getElementById("map_canvas"), p);
+
+			function cancelProcess()
+  			{
+  			var descEffects = new Effects();
+    		descEffects.hide('descbox');
+    		map.removeMarker(this.marker); 
+  			}
+
 		}
 
 		if (geo_position_js.init()) {
@@ -78,11 +86,7 @@
   		
   		}
 
-  		function cancelProcess()
-  		{
-  		var descEffects = new Effects();
-    	descEffects.hide('descbox');  
-  		}
+
 
 	</script>
 
