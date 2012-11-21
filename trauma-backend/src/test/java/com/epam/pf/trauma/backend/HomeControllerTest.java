@@ -1,8 +1,14 @@
 package com.epam.pf.trauma.backend;
 
+import static org.springframework.test.web.server.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.server.request.MockMvcRequestBuilders.put;
+
+import java.io.IOException;
+
 import junit.framework.Assert;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.ObjectReader;
 import org.codehaus.jackson.map.ObjectWriter;
@@ -16,7 +22,6 @@ import org.springframework.test.web.server.setup.MockMvcBuilders;
 import com.epam.pf.trauma.backend.config.AppConfig;
 import com.epam.pf.trauma.backend.config.WebMvcConfig;
 import com.epam.pf.trauma.backend.service.domain.Marker;
-import static org.springframework.test.web.server.request.MockMvcRequestBuilders.*;
 
 public class HomeControllerTest {
 
@@ -25,30 +30,29 @@ public class HomeControllerTest {
 	private ObjectWriter writer;
 
 	private ObjectReader reader;
+	
+	private MvcResult result;
+
+	private Marker newMarker;
 
 	@Before
-	public void setup() {
+	public void setup() throws JsonGenerationException, JsonMappingException,
+			IOException, Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 		this.writer = objectMapper.typedWriter(Marker.class);
 		this.reader = objectMapper.reader(Marker.class);
 
 		this.mockMvc = MockMvcBuilders.annotationConfigSetup(AppConfig.class,
 				WebMvcConfig.class).build();
+
+		newMarker = new Marker(42, 42, "test");
+		result = addMarker(newMarker);
+
 	}
 
 	@Test
 	public void testAddMarkerWhenMarkerIsValid() throws Exception {
 
-		Marker newMarker = new Marker(42, 42, "test");
-
-		// @formatter:off
-		MvcResult result = this.mockMvc.perform(
-				put("/markers")
-						.body(this.writer.writeValueAsString(newMarker)
-								.getBytes())
-						.contentType(MediaType.APPLICATION_JSON)
-						.accept(MediaType.APPLICATION_JSON)).andReturn();
-		// @formatter:on
 		Marker savedMarker = reader.readValue(result.getResponse()
 				.getContentAsString());
 
@@ -63,53 +67,36 @@ public class HomeControllerTest {
 	@Test
 	public void testEditMarkerWhenMarkerIsValid() throws Exception {
 
-		Marker newMarker = new Marker(42, 42, "test");
-
-		MvcResult result = this.mockMvc.perform(
-				put("/markers")
-						.body(this.writer.writeValueAsString(newMarker)
-								.getBytes())
-						.contentType(MediaType.APPLICATION_JSON)
-						.accept(MediaType.APPLICATION_JSON)).andReturn();
+		// edit marker
 		String desc = "edittest";
 		MvcResult result2 = this.mockMvc.perform(
-				post("/markers/1")
-						.body(desc.getBytes())
+				put("/markers/1").body(desc.getBytes())
 						.contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON)).andReturn();
 
-		Marker savedMarker = reader.readValue(result2.getResponse()
+		Marker editedMarker = reader.readValue(result2.getResponse()
 				.getContentAsString());
 
-		Assert.assertNotNull(savedMarker.getId());
+		Assert.assertNotNull(editedMarker.getId());
 		Assert.assertEquals(newMarker.getLongitude(),
-				savedMarker.getLongitude());
-		Assert.assertEquals(newMarker.getLatitude(), savedMarker.getLatitude());
-		Assert.assertEquals(desc, savedMarker.getDesc());
+				editedMarker.getLongitude());
+		Assert.assertEquals(newMarker.getLatitude(), editedMarker.getLatitude());
+		Assert.assertEquals(desc, editedMarker.getDesc());
 	}
 
-	@Test
-	public void testDeleteMarkerWhenMarkerIsValid() throws Exception {
+	
 
-		Marker newMarker = new Marker(42, 42, "test");
-
-		MvcResult result = this.mockMvc.perform(
-				put("/markers")
-						.body(this.writer.writeValueAsString(newMarker)
-								.getBytes())
-						.contentType(MediaType.APPLICATION_JSON)
-						.accept(MediaType.APPLICATION_JSON)).andReturn();
-
-		MvcResult result2 = this.mockMvc.perform(
-				delete("/markers/1")
-						
-						.contentType(MediaType.APPLICATION_JSON)
-						.accept(MediaType.APPLICATION_JSON)).andReturn();
-
-		String saved = result2.getResponse().getContentAsString();
-		Assert.assertNotNull(saved);
-		Assert.assertEquals(saved, "200");
+	// private
+	private MvcResult addMarker(Marker marker) throws JsonGenerationException,
+			JsonMappingException, IOException, Exception {
+		return this.mockMvc
+				.perform(
+						post("/markers")
+								.body(this.writer.writeValueAsString(marker)
+										.getBytes())
+								.contentType(MediaType.APPLICATION_JSON)
+								.accept(MediaType.APPLICATION_JSON))
+				.andReturn();
 
 	}
-
 }

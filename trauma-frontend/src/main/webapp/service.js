@@ -17,9 +17,11 @@ var TraumaService = Class.create({
 		}
 
 		this.marker = map.showMarker(latLng);
+		document.getElementById('descfield').value = '';
 		this.effects.show('descbox', function() {
 			self.effects.focus('descfield');
 		});
 	}
+
 
 });

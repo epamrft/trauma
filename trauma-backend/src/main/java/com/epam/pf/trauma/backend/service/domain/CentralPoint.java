@@ -38,9 +38,9 @@ public class CentralPoint {
 	}
 
 	public boolean inRadius(Marker marker) {
-		if (this.latitude * this.latitude + this.radius * this.radius < marker.getLatitude() * marker.getLatitude()
-				&& this.longitude * this.longitude + this.radius * this.radius < marker.getLongitude() * marker.getLongitude()) {
-			return true;
+		
+		if (Math.pow(this.latitude-marker.getLatitude(),2) + Math.pow(this.longitude-marker.getLongitude(),2) < Math.pow(this.radius,2))
+	{ 		return true;
 		}
 
 		return false;

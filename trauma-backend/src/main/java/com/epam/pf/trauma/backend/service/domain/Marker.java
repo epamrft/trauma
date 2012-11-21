@@ -26,6 +26,7 @@ public class Marker implements Serializable {
 		this.desc = desc;
 	}
 
+
 	public Integer getId() {
 		return id;
 	}
