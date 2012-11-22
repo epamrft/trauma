@@ -7,12 +7,13 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.pf.trauma.backend.service.dao.MarkerDAO;
 import com.epam.pf.trauma.backend.service.domain.CentralPoint;
 import com.epam.pf.trauma.backend.service.domain.Marker;
-
 @Service
+//@Transactional
 public class MarkerService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MarkerService.class);

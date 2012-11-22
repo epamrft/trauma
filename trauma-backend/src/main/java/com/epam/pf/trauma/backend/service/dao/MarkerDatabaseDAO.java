@@ -5,10 +5,12 @@ import java.util.LinkedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.pf.trauma.backend.service.domain.CentralPoint;
 import com.epam.pf.trauma.backend.service.domain.Marker;
 @Service
+@Transactional
 public class MarkerDatabaseDAO extends AbstractJpaDAO<Marker> implements
 		MarkerDAO {
 
@@ -24,8 +26,7 @@ public class MarkerDatabaseDAO extends AbstractJpaDAO<Marker> implements
 
 	@Override
 	public Collection<Marker> getMarkers(CentralPoint centralPoint) {
-		MarkerDatabaseDAO.LOGGER.debug("Getting Markers with Central: {}",
-				centralPoint);
+		MarkerDatabaseDAO.LOGGER.debug("Getting Markers with Central: {}",centralPoint);
 		Collection<Marker> markers = new LinkedList<Marker>(this.findAll());
 		for (Marker marker : markers) {
 			if (!centralPoint.inRadius(marker)) {
@@ -40,8 +41,7 @@ public class MarkerDatabaseDAO extends AbstractJpaDAO<Marker> implements
 
 	@Override
 	public Collection<Marker> getMarkers() {
-		MarkerDatabaseDAO.LOGGER.debug("Listing all Markers: {}",
-				this.findAll());
+		MarkerDatabaseDAO.LOGGER.debug("Listing all Markers: {}",this.findAll());
 		return this.findAll();
 	}
 

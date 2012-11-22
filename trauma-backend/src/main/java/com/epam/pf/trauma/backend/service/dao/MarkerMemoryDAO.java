@@ -7,8 +7,6 @@ import java.util.concurrent.ConcurrentMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-
 import com.epam.pf.trauma.backend.service.domain.CentralPoint;
 import com.epam.pf.trauma.backend.service.domain.Marker;
 

@@ -22,12 +22,13 @@ public class PersistenceJPAConfig {
 		HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
 		hibernateJpaVendorAdapter.setShowSql(false);
 		hibernateJpaVendorAdapter.setGenerateDdl(true);
+		
 
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
 		emf.setDataSource(this.restDataSource());
 		emf.setJpaVendorAdapter(hibernateJpaVendorAdapter);
 		emf.setPersistenceUnitName("trauma-PersistenceUnit");
-		emf.getJpaPropertyMap().put("hibernate.hbm2ddl.auto", "true");
+		emf.getJpaPropertyMap().put("hibernate.hbm2ddl.auto", "create");
 		emf.setPackagesToScan(new String[] { "com.epam.pf.trauma.backend.service.domain" });
 
 		return emf;

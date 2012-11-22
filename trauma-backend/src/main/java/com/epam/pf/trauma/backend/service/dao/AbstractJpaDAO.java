@@ -1,7 +1,7 @@
 package com.epam.pf.trauma.backend.service.dao;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,13 +20,14 @@ public abstract class AbstractJpaDAO< T extends Serializable > {
 	   public T findOne( final int id ){
 	      return entityManager.find( clazz, id );
 	   }
-	   public List< T > findAll(){
-	      return entityManager.createQuery( "from " + clazz.getName() )
-	       .getResultList();
+	   public Collection<T> findAll(){
+		 
+	      return entityManager.createQuery( "SELECT e FROM "+clazz.getName(),clazz).getResultList();
 	   }
 	 
 	   public void save( final T entity ){
 	      entityManager.persist( entity );
+	      //entityManager.flush();
 	   }
 	 
 	   public void update( final T entity ){
