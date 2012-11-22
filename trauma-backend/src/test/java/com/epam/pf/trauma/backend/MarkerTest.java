@@ -16,6 +16,7 @@ import org.springframework.test.web.server.MvcResult;
 import org.springframework.test.web.server.setup.MockMvcBuilders;
 
 import com.epam.pf.trauma.backend.config.AppConfig;
+import com.epam.pf.trauma.backend.config.PersistenceJPAConfig;
 import com.epam.pf.trauma.backend.config.WebMvcConfig;
 import com.epam.pf.trauma.backend.service.domain.Marker;
 
@@ -69,7 +70,7 @@ public class MarkerTest {
 		this.writer = objectMapper.typedWriter(Marker.class);
 		this.arrayReader = objectMapper.reader(Marker[].class);
 
-		this.mockMvc = MockMvcBuilders.annotationConfigSetup(AppConfig.class,
+		this.mockMvc = MockMvcBuilders.annotationConfigSetup(AppConfig.class,PersistenceJPAConfig.class,
 				WebMvcConfig.class).build();
 
 		addMarker(new Marker(42, 42, "test1"));

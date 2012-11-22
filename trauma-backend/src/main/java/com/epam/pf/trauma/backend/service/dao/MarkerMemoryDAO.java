@@ -12,10 +12,11 @@ import org.springframework.stereotype.Service;
 import com.epam.pf.trauma.backend.service.domain.CentralPoint;
 import com.epam.pf.trauma.backend.service.domain.Marker;
 
-@Service
+
 public class MarkerMemoryDAO implements MarkerDAO {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(MarkerMemoryDAO.class);
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(MarkerMemoryDAO.class);
 
 	public ConcurrentMap<String, Marker> memoryDatabase = new ConcurrentHashMap<String, Marker>();
 
@@ -29,29 +30,26 @@ public class MarkerMemoryDAO implements MarkerDAO {
 
 	@Override
 	public Collection<Marker> getMarkers(CentralPoint centralPoint) {
-		Collection<Marker> markers = new LinkedList<Marker>();
-		for (Marker marker : this.memoryDatabase.values()) {
-			if (centralPoint.inRadius(marker)) {
-				markers.add(marker);
+		Collection<Marker> markers = new LinkedList<Marker>(this.memoryDatabase.values());
+		for (Marker marker : markers) {
+			if (!centralPoint.inRadius(marker)) {
+				markers.remove(marker);
 			}
 		}
-
+		MarkerMemoryDAO.LOGGER.debug("Listing markers: {}",markers);
 		return markers;
 	}
 
 	@Override
 	public Collection<Marker> getMarkers() {
-		Collection<Marker> markers = new LinkedList<Marker>();
-		for (Marker marker : this.memoryDatabase.values()) {
-			markers.add(marker);
-		}
-
-		return markers;
+		MarkerMemoryDAO.LOGGER.debug("Listing all markers: {}",this.memoryDatabase.values());
+		return this.memoryDatabase.values();
 	}
 
 	@Override
 	public void deleteMarker(int id) {
-		MarkerMemoryDAO.LOGGER.debug("Deleted marker: {}", this.memoryDatabase.get(Integer.toString(id)));
+		MarkerMemoryDAO.LOGGER.debug("Deleted marker: {}",
+				this.memoryDatabase.get(Integer.toString(id)));
 		this.memoryDatabase.remove(Integer.toString(id));
 	}
 
@@ -60,7 +58,8 @@ public class MarkerMemoryDAO implements MarkerDAO {
 		if (this.memoryDatabase.containsKey(Integer.toString(id))) {
 			this.memoryDatabase.get(Integer.toString(id)).setDesc(desc);
 		}
-		MarkerMemoryDAO.LOGGER.debug("Edited marker: {}", this.memoryDatabase.get(Integer.toString(id)));
+		MarkerMemoryDAO.LOGGER.debug("Edited marker: {}",
+				this.memoryDatabase.get(Integer.toString(id)));
 		return this.memoryDatabase.get(Integer.toString(id));
 	}
 
