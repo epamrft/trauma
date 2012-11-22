@@ -19,6 +19,7 @@
 <script src="miscJs/map.js"></script>
 <script src="service.js"></script>
 <script src="effects.js"></script>
+<script src="miscJs/tools.js"></script>
 <script type="text/javascript" src="comms.js"></script>
 
 </head>
@@ -38,6 +39,7 @@
 		<div id="lat"></div>
 		<div id="lng"></div>
 
+
 		<input type="text" id="geoloc" readonly="readonly"/>
 		<BR>
 		<textarea id="descfield" class="ownWidth" cols="21"></textarea>
@@ -46,6 +48,8 @@
 		<input onclick="cancelProcess()" type="button" id="cancelBtn" value="Cancel">
 		
 	</div>
+	
+	<div id="response"></div>
 
 	<script>
 

@@ -21,6 +21,10 @@ var BackendComms = Class.create({
       onSuccess: function(transport) {
         console.log(transport.responseText);
         $('response').update(transport.responseText);
+        var xMarker = $('response').innerHTML.evalJSON();
+        var kit = new ToolKit();
+        kit.addCallbackMarker(xMarker);
+        //Fix a mapra rakást
         }
 
       });
@@ -75,14 +79,22 @@ var BackendComms = Class.create({
       contentType: 'application/json',
       postBody: Object.toJSON(data),  
       onSuccess: function(transport) {        
-      console.log(transport.responseText);
       $('response').update(transport.responseText);
-      }
 
+      var xMarkerArray = JSON.parse($('response').innerHTML);
+
+      for(var i in xMarkerArray){
+
+            var xMarker = xMarkerArray[i];
+            console.log(xMarker.id + " | " + xMarker.desc);
+            //ide jön a toolkites cucc
+          }
+
+        }
+      
       });
 
     
-  }
-
+  },
 
 });

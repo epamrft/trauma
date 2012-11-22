@@ -91,7 +91,7 @@ var Map = Class.create({
 
 		// To add the marker to the map, call setMap();
 
-		marker.setMap(this.map);
+		//marker.setMap(this.map);
 		this.revGeocode(latLng);
 		return marker;
 	},
