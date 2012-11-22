@@ -2,14 +2,16 @@ package com.epam.pf.trauma.backend.service.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.*;
-
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "markers") 
+@Table(name = "markers")
 public class Marker implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	private Integer id;
 
@@ -30,9 +32,8 @@ public class Marker implements Serializable {
 		this.desc = desc;
 	}
 
-
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Integer id) {
@@ -40,7 +41,7 @@ public class Marker implements Serializable {
 	}
 
 	public float getLongitude() {
-		return longitude;
+		return this.longitude;
 	}
 
 	public void setLongitude(float longitude) {
@@ -48,7 +49,7 @@ public class Marker implements Serializable {
 	}
 
 	public float getLatitude() {
-		return latitude;
+		return this.latitude;
 	}
 
 	public void setLatitude(float latitude) {
@@ -56,7 +57,7 @@ public class Marker implements Serializable {
 	}
 
 	public String getDesc() {
-		return desc;
+		return this.desc;
 	}
 
 	public void setDesc(String desc) {
@@ -65,7 +66,7 @@ public class Marker implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Marker [id=" + id + ", longitude=" + longitude + ", latitude=" + latitude + ", desc=" + desc + "]";
+		return "Marker [id=" + this.id + ", longitude=" + this.longitude + ", latitude=" + this.latitude + ", desc=" + this.desc + "]";
 	}
 
 }

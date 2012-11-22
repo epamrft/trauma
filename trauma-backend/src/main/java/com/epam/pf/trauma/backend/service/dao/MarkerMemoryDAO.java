@@ -7,33 +7,30 @@ import java.util.concurrent.ConcurrentMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.epam.pf.trauma.backend.service.domain.CentralPoint;
 import com.epam.pf.trauma.backend.service.domain.Marker;
 
 @Service
-public class MarkerMemoryDAO extends AbstractJpaDAO<Marker> implements MarkerDAO {
+public class MarkerMemoryDAO implements MarkerDAO {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MarkerMemoryDAO.class);
-	
+
 	public ConcurrentMap<String, Marker> memoryDatabase = new ConcurrentHashMap<String, Marker>();
 
 	@Override
 	public Marker addMarker(Marker marker) {
-		
-		marker.setId(memoryDatabase.size() + 1);
-		this.save(marker);
-		LOGGER.debug("Added marker: {}", marker);
+		marker.setId(this.memoryDatabase.size() + 1);
+		this.memoryDatabase.put(Integer.toString(marker.getId()), marker);
+		MarkerMemoryDAO.LOGGER.debug("Added marker: {}", marker);
 		return marker;
 	}
 
 	@Override
 	public Collection<Marker> getMarkers(CentralPoint centralPoint) {
 		Collection<Marker> markers = new LinkedList<Marker>();
-		for (Marker marker : memoryDatabase.values()) {
+		for (Marker marker : this.memoryDatabase.values()) {
 			if (centralPoint.inRadius(marker)) {
 				markers.add(marker);
 			}
@@ -41,26 +38,30 @@ public class MarkerMemoryDAO extends AbstractJpaDAO<Marker> implements MarkerDAO
 
 		return markers;
 	}
+
 	@Override
 	public Collection<Marker> getMarkers() {
 		Collection<Marker> markers = new LinkedList<Marker>();
-		markers=this.findAll();
+		for (Marker marker : this.memoryDatabase.values()) {
+			markers.add(marker);
+		}
+
 		return markers;
 	}
 
 	@Override
 	public void deleteMarker(int id) {
-		LOGGER.debug("Deleted marker: {}", memoryDatabase.get(Integer.toString(id)));
-		this.deleteById(id);
+		MarkerMemoryDAO.LOGGER.debug("Deleted marker: {}", this.memoryDatabase.get(Integer.toString(id)));
+		this.memoryDatabase.remove(Integer.toString(id));
 	}
 
 	@Override
 	public Marker editMarker(int id, String desc) {
-		if (memoryDatabase.containsKey(Integer.toString(id))) {
-			memoryDatabase.get(Integer.toString(id)).setDesc(desc);
+		if (this.memoryDatabase.containsKey(Integer.toString(id))) {
+			this.memoryDatabase.get(Integer.toString(id)).setDesc(desc);
 		}
-		LOGGER.debug("Edited marker: {}", memoryDatabase.get(Integer.toString(id)));
-		return memoryDatabase.get(Integer.toString(id));
+		MarkerMemoryDAO.LOGGER.debug("Edited marker: {}", this.memoryDatabase.get(Integer.toString(id)));
+		return this.memoryDatabase.get(Integer.toString(id));
 	}
 
 }

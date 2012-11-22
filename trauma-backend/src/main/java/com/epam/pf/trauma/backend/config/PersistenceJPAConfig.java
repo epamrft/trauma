@@ -8,7 +8,6 @@ import org.springframework.dao.annotation.PersistenceExceptionTranslationPostPro
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -16,19 +15,22 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-public class PersistenceJPAConfig{
+public class PersistenceJPAConfig {
+
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
-		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-		factoryBean.setDataSource(this.restDataSource());
-		factoryBean.setPackagesToScan(new String[] { "com.epam.pf.trauma.backend.service.domain" });
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+		HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
+		hibernateJpaVendorAdapter.setShowSql(false);
+		hibernateJpaVendorAdapter.setGenerateDdl(true);
 
-		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
+		emf.setDataSource(this.restDataSource());
+		emf.setJpaVendorAdapter(hibernateJpaVendorAdapter);
+		emf.setPersistenceUnitName("trauma-PersistenceUnit");
+		emf.getJpaPropertyMap().put("hibernate.hbm2ddl.auto", "true");
+		emf.setPackagesToScan(new String[] { "com.epam.pf.trauma.backend.service.domain" });
 
-		factoryBean.setJpaVendorAdapter(vendorAdapter);
-		// factoryBean.setJpaProperties( additionlProperties() );
-
-		return factoryBean;
+		return emf;
 	}
 
 	@Bean
@@ -40,7 +42,7 @@ public class PersistenceJPAConfig{
 	@Bean
 	public PlatformTransactionManager transactionManager() {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setEntityManagerFactory(this.entityManagerFactoryBean().getObject());
+		transactionManager.setEntityManagerFactory(this.entityManagerFactory().getObject());
 
 		return transactionManager;
 	}

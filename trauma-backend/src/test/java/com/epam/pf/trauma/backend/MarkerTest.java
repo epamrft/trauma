@@ -1,12 +1,8 @@
 package com.epam.pf.trauma.backend;
 
 import static org.springframework.test.web.server.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.server.request.MockMvcRequestBuilders.put;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import static org.springframework.test.web.server.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.server.request.MockMvcRequestBuilders.post;
 import junit.framework.Assert;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -14,7 +10,6 @@ import org.codehaus.jackson.map.ObjectReader;
 import org.codehaus.jackson.map.ObjectWriter;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.server.MockMvc;
 import org.springframework.test.web.server.MvcResult;
@@ -23,7 +18,6 @@ import org.springframework.test.web.server.setup.MockMvcBuilders;
 import com.epam.pf.trauma.backend.config.AppConfig;
 import com.epam.pf.trauma.backend.config.WebMvcConfig;
 import com.epam.pf.trauma.backend.service.domain.Marker;
-import static org.springframework.test.web.server.request.MockMvcRequestBuilders.*;
 
 public class MarkerTest {
 
