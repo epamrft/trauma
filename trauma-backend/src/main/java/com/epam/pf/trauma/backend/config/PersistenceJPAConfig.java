@@ -20,7 +20,7 @@ public class PersistenceJPAConfig {
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
-		hibernateJpaVendorAdapter.setShowSql(false);
+		hibernateJpaVendorAdapter.setShowSql(true);
 		hibernateJpaVendorAdapter.setGenerateDdl(true);
 		
 
@@ -29,7 +29,7 @@ public class PersistenceJPAConfig {
 		emf.setJpaVendorAdapter(hibernateJpaVendorAdapter);
 		emf.setPersistenceUnitName("trauma-PersistenceUnit");
 		emf.getJpaPropertyMap().put("hibernate.hbm2ddl.auto", "create");
-		emf.setPackagesToScan(new String[] { "com.epam.pf.trauma.backend.service.domain" });
+		//emf.setPackagesToScan(new String[] { "com.epam.pf.trauma.backend.service.domain" });
 
 		return emf;
 	}

@@ -10,11 +10,9 @@ import org.slf4j.LoggerFactory;
 import com.epam.pf.trauma.backend.service.domain.CentralPoint;
 import com.epam.pf.trauma.backend.service.domain.Marker;
 
-
 public class MarkerMemoryDAO implements MarkerDAO {
 
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(MarkerMemoryDAO.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(MarkerMemoryDAO.class);
 
 	public ConcurrentMap<String, Marker> memoryDatabase = new ConcurrentHashMap<String, Marker>();
 
@@ -34,20 +32,19 @@ public class MarkerMemoryDAO implements MarkerDAO {
 				markers.remove(marker);
 			}
 		}
-		MarkerMemoryDAO.LOGGER.debug("Listing markers: {}",markers);
+		MarkerMemoryDAO.LOGGER.debug("Listing markers: {}", markers);
 		return markers;
 	}
 
 	@Override
 	public Collection<Marker> getMarkers() {
-		MarkerMemoryDAO.LOGGER.debug("Listing all markers: {}",this.memoryDatabase.values());
+		MarkerMemoryDAO.LOGGER.debug("Listing all markers: {}", this.memoryDatabase.values());
 		return this.memoryDatabase.values();
 	}
 
 	@Override
 	public void deleteMarker(int id) {
-		MarkerMemoryDAO.LOGGER.debug("Deleted marker: {}",
-				this.memoryDatabase.get(Integer.toString(id)));
+		MarkerMemoryDAO.LOGGER.debug("Deleted marker: {}", this.memoryDatabase.get(Integer.toString(id)));
 		this.memoryDatabase.remove(Integer.toString(id));
 	}
 
@@ -56,8 +53,7 @@ public class MarkerMemoryDAO implements MarkerDAO {
 		if (this.memoryDatabase.containsKey(Integer.toString(id))) {
 			this.memoryDatabase.get(Integer.toString(id)).setDesc(desc);
 		}
-		MarkerMemoryDAO.LOGGER.debug("Edited marker: {}",
-				this.memoryDatabase.get(Integer.toString(id)));
+		MarkerMemoryDAO.LOGGER.debug("Edited marker: {}", this.memoryDatabase.get(Integer.toString(id)));
 		return this.memoryDatabase.get(Integer.toString(id));
 	}
 

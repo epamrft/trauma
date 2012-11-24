@@ -1,5 +1,7 @@
 package com.epam.pf.trauma.backend;
 
+import static org.springframework.test.web.server.request.MockMvcRequestBuilders.get;
+
 import java.io.IOException;
 
 import junit.framework.Assert;
@@ -30,33 +32,41 @@ public class HomeControllerTest {
 
 	private ObjectReader reader;
 
+	private ObjectReader arrayReader;
+
 	private MvcResult result;
 
 	private Marker newMarker;
+
+	private Marker savedMarker;
 
 	@Before
 	public void setup() throws JsonGenerationException, JsonMappingException, IOException, Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 		this.writer = objectMapper.typedWriter(Marker.class);
 		this.reader = objectMapper.reader(Marker.class);
+		this.arrayReader = objectMapper.reader(Marker[].class);
 
 		this.mockMvc = MockMvcBuilders.annotationConfigSetup(AppConfig.class, WebMvcConfig.class, PersistenceJPAConfig.class).build();
 
 		this.newMarker = new Marker(42, 42, "test");
 		this.result = this.addMarker(this.newMarker);
-
+		this.savedMarker = this.reader.readValue(this.result.getResponse().getContentAsString());
 	}
 
 	@Test
+	public void testGetMarker() throws Exception {
+		Marker[] markers = getMarkersWithOutCentral();
+		Assert.assertNotNull(markers);
+		Assert.assertEquals(1, markers.length);
+	}
+	
+	@Test
 	public void testAddMarkerWhenMarkerIsValid() throws Exception {
-
-		Marker savedMarker = this.reader.readValue(this.result.getResponse().getContentAsString());
-
 		Assert.assertNotNull(savedMarker.getId());
 		Assert.assertEquals(this.newMarker.getLongitude(), savedMarker.getLongitude());
 		Assert.assertEquals(this.newMarker.getLatitude(), savedMarker.getLatitude());
 		Assert.assertEquals(this.newMarker.getDesc(), savedMarker.getDesc());
-
 	}
 
 	@Test
@@ -64,13 +74,15 @@ public class HomeControllerTest {
 
 		// edit marker
 		String desc = "edittest";
-		MvcResult result2 = this.mockMvc.perform(MockMvcRequestBuilders.put("/markers/1").body(desc.getBytes()).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andReturn();
+		String url = String.format("/markers/%d", this.savedMarker.getId());
+		MvcResult result2 = this.mockMvc.perform(MockMvcRequestBuilders.put(url).body(desc.getBytes()).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andReturn();
 
 		Marker editedMarker = this.reader.readValue(result2.getResponse().getContentAsString());
 
 		Assert.assertNotNull(editedMarker.getId());
-		Assert.assertEquals(this.newMarker.getLongitude(), editedMarker.getLongitude());
-		Assert.assertEquals(this.newMarker.getLatitude(), editedMarker.getLatitude());
+		Assert.assertEquals(this.savedMarker.getId(), editedMarker.getId());
+		Assert.assertEquals(this.savedMarker.getLongitude(), editedMarker.getLongitude());
+		Assert.assertEquals(this.savedMarker.getLatitude(), editedMarker.getLatitude());
 		Assert.assertEquals(desc, editedMarker.getDesc());
 	}
 
@@ -79,5 +91,13 @@ public class HomeControllerTest {
 		return this.mockMvc.perform(
 				MockMvcRequestBuilders.post("/markers").body(this.writer.writeValueAsString(marker).getBytes()).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andReturn();
 
+	}
+
+	private Marker[] getMarkersWithOutCentral() throws Exception {
+
+		MvcResult result = this.mockMvc.perform(get("/markers").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andReturn();
+		String listOfMarkers = result.getResponse().getContentAsString();
+
+		return (Marker[]) arrayReader.readValue(listOfMarkers);
 	}
 }
