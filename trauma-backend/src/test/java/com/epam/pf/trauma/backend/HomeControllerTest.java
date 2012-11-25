@@ -14,6 +14,7 @@ import org.codehaus.jackson.map.ObjectWriter;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.server.MockMvc;
 import org.springframework.test.web.server.MvcResult;
 import org.springframework.test.web.server.request.MockMvcRequestBuilders;
@@ -23,7 +24,7 @@ import com.epam.pf.trauma.backend.config.AppConfig;
 import com.epam.pf.trauma.backend.config.PersistenceJPAConfig;
 import com.epam.pf.trauma.backend.config.WebMvcConfig;
 import com.epam.pf.trauma.backend.service.domain.Marker;
-
+@ActiveProfiles("default")
 public class HomeControllerTest {
 
 	private MockMvc mockMvc;
