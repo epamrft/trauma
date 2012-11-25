@@ -11,6 +11,7 @@ import org.codehaus.jackson.map.ObjectWriter;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.server.MockMvc;
 import org.springframework.test.web.server.MvcResult;
 import org.springframework.test.web.server.setup.MockMvcBuilders;
@@ -30,6 +31,7 @@ public class MarkerTest {
 
 	@Before
 	public void setup() throws Exception {
+		System.setProperty("spring.profiles.active", "dev");
 		ObjectMapper objectMapper = new ObjectMapper();
 		this.writer = objectMapper.typedWriter(Marker.class);
 		this.arrayReader = objectMapper.reader(Marker[].class);

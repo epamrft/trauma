@@ -24,7 +24,7 @@ import com.epam.pf.trauma.backend.config.AppConfig;
 import com.epam.pf.trauma.backend.config.PersistenceJPAConfig;
 import com.epam.pf.trauma.backend.config.WebMvcConfig;
 import com.epam.pf.trauma.backend.service.domain.Marker;
-@ActiveProfiles("default")
+@ActiveProfiles("dev")
 public class HomeControllerTest {
 
 	private MockMvc mockMvc;
@@ -43,6 +43,7 @@ public class HomeControllerTest {
 
 	@Before
 	public void setup() throws JsonGenerationException, JsonMappingException, IOException, Exception {
+		System.setProperty("spring.profiles.active", "dev");
 		ObjectMapper objectMapper = new ObjectMapper();
 		this.writer = objectMapper.typedWriter(Marker.class);
 		this.reader = objectMapper.reader(Marker.class);
