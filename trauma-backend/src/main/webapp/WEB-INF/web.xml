@@ -9,6 +9,10 @@
 		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
 	</context-param>
 	
+	<context-param>
+		<param-name>contextInitializerClasses</param-name>
+		<param-value>com.epam.pf.trauma.backend.config.Initializer</param-value>
+	</context-param>
 	<!-- Location of Java @Configuration classes that configure the components 
 		that makeup this application -->
 	<context-param>
