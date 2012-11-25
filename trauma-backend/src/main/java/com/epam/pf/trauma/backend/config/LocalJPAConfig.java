@@ -9,7 +9,6 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.stereotype.Component;
 
 @Component 
-@Profile("default")
 public class LocalJPAConfig implements DataSourceConfiguration {
 
 	@Bean

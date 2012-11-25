@@ -24,7 +24,7 @@ import com.epam.pf.trauma.backend.config.AppConfig;
 import com.epam.pf.trauma.backend.config.PersistenceJPAConfig;
 import com.epam.pf.trauma.backend.config.WebMvcConfig;
 import com.epam.pf.trauma.backend.service.domain.Marker;
-@ActiveProfiles("default")
+
 public class HomeControllerTest {
 
 	private MockMvc mockMvc;
