@@ -31,6 +31,7 @@ public class MarkerService {
 
 		return markers;
 	}
+
 	public Collection<Marker> getMarkers() {
 		LOGGER.debug("get all markers: {}");
 		Collection<Marker> markers = markerDAO.getMarkers();
@@ -44,6 +45,7 @@ public class MarkerService {
 	}
 
 	public Marker editMarker(int id, String desc) {
+		LOGGER.debug("Edit marker: id: {}, desc: {}", id, desc);
 		return markerDAO.editMarker(id, desc);
 	}
 

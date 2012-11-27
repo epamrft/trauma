@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 
 @Configuration
 @ComponentScan(basePackages = { "com.epam.pf.trauma.backend" }, excludeFilters = { @Filter(Configuration.class), @Filter(Controller.class) })
+
 public class AppConfig {
 
 }
