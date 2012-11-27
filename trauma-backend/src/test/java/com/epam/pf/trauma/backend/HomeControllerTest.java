@@ -1,61 +1,31 @@
 package com.epam.pf.trauma.backend;
 
-import static org.springframework.test.web.server.request.MockMvcRequestBuilders.get;
-
 import java.io.IOException;
 
 import junit.framework.Assert;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.ObjectReader;
-import org.codehaus.jackson.map.ObjectWriter;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.web.server.MockMvc;
 import org.springframework.test.web.server.MvcResult;
 import org.springframework.test.web.server.request.MockMvcRequestBuilders;
-import org.springframework.test.web.server.setup.MockMvcBuilders;
-
-import com.epam.pf.trauma.backend.config.AppConfig;
-import com.epam.pf.trauma.backend.config.PersistenceJPAConfig;
-import com.epam.pf.trauma.backend.config.WebMvcConfig;
 import com.epam.pf.trauma.backend.service.domain.Marker;
-@ActiveProfiles(profiles="dev")
-public class HomeControllerTest {
 
-	private MockMvc mockMvc;
-
-	private ObjectWriter writer;
-
-	private ObjectReader reader;
-
-	private ObjectReader arrayReader;
-
-	private MvcResult result;
-
-	private Marker newMarker;
-
-	private Marker savedMarker;
+public class HomeControllerTest extends TestBase {
 
 	@Before
-	public void setup() throws JsonGenerationException, JsonMappingException, IOException, Exception {
-		System.setProperty("spring.profiles.active", "dev");
-		ObjectMapper objectMapper = new ObjectMapper();
-		this.writer = objectMapper.typedWriter(Marker.class);
-		this.reader = objectMapper.reader(Marker.class);
-		this.arrayReader = objectMapper.reader(Marker[].class);
-
-		this.mockMvc = MockMvcBuilders.annotationConfigSetup(AppConfig.class, WebMvcConfig.class, PersistenceJPAConfig.class).build();
-
+	public void ownSetup() throws JsonGenerationException, JsonMappingException, IOException, Exception{
+		
 		this.newMarker = new Marker(42, 42, "test");
 		this.result = this.addMarker(this.newMarker);
-		this.savedMarker = this.reader.readValue(this.result.getResponse().getContentAsString());
+		this.savedMarker = this.reader.readValue(this.result.getResponse()
+				.getContentAsString());
+		
+		
+		
 	}
-
 	@Test
 	public void testGetMarker() throws Exception {
 		Marker[] markers = getMarkersWithOutCentral();
@@ -88,18 +58,5 @@ public class HomeControllerTest {
 		Assert.assertEquals(desc, editedMarker.getDesc());
 	}
 
-	// private
-	private MvcResult addMarker(Marker marker) throws JsonGenerationException, JsonMappingException, IOException, Exception {
-		return this.mockMvc.perform(
-				MockMvcRequestBuilders.post("/markers").body(this.writer.writeValueAsString(marker).getBytes()).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andReturn();
-
-	}
-
-	private Marker[] getMarkersWithOutCentral() throws Exception {
-
-		MvcResult result = this.mockMvc.perform(get("/markers").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andReturn();
-		String listOfMarkers = result.getResponse().getContentAsString();
-
-		return (Marker[]) arrayReader.readValue(listOfMarkers);
-	}
+	
 }

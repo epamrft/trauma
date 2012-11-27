@@ -2,6 +2,7 @@ package com.epam.pf.trauma.backend.service.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ public class Marker implements Serializable {
 	private float longitude;
 
 	private float latitude;
-
+	@Column(name="description")
 	private String desc;
 
 	public Marker() {
