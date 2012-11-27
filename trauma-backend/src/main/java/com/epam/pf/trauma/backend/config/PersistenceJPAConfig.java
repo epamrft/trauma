@@ -1,5 +1,7 @@
 package com.epam.pf.trauma.backend.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class PersistenceJPAConfig {
 
-	@Autowired private DataSourceConfiguration dataSourceConfiguration;
+	@Autowired private DataSource dataSource;
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws Exception {
 		HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
@@ -25,7 +27,7 @@ public class PersistenceJPAConfig {
 		
 
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
-		emf.setDataSource(dataSourceConfiguration.dataSource());
+		emf.setDataSource(dataSource);
 		emf.setJpaVendorAdapter(hibernateJpaVendorAdapter);
 		emf.setPersistenceUnitName("trauma-PersistenceUnit");
 		emf.getJpaPropertyMap().put("hibernate.hbm2ddl.auto", "create");

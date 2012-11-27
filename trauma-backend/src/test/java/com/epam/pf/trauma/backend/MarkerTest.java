@@ -20,7 +20,7 @@ import com.epam.pf.trauma.backend.config.AppConfig;
 import com.epam.pf.trauma.backend.config.PersistenceJPAConfig;
 import com.epam.pf.trauma.backend.config.WebMvcConfig;
 import com.epam.pf.trauma.backend.service.domain.Marker;
-
+@ActiveProfiles(profiles="dev")
 public class MarkerTest {
 
 	private MockMvc mockMvc;

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:cloud="http://schema.cloudfoundry.org/spring"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+                http://schema.cloudfoundry.org/spring http://schema.cloudfoundry.org/spring/cloudfoundry-spring.xsd">
+
+	<beans profile="default">
+		<cloud:data-source id="dataSource" service-name="trauma-database">
+			<cloud:connection properties="charset=utf-8" />
+			<cloud:pool pool-size="5-10" max-wait-time="2000" />
+		</cloud:data-source>
+	</beans>
+
+
+	<beans profile="dev">
+	<jdbc:embedded-database id="dataSource" type="H2"/>
+		
+	</beans>
+
+</beans>
+        
