@@ -1,25 +1,23 @@
 package rft.trauma.android;
 
-import rft.trauma.android.machine.Marker;
+import rft.trauma.android.bl.CentralPoint;
+import rft.trauma.android.bl.MapOverlay;
+import rft.trauma.android.bl.Marker;
+import rft.trauma.android.bl.MarkerManager;
+
 import java.util.Iterator;
 import java.util.List;
-import rft.trauma.android.machine.MapOverlay;
-import rft.trauma.android.services.CentralPoint;
-import rft.trauma.android.services.IDataProvider;
-import rft.trauma.android.services.ServerException;
-import rft.trauma.android.services.TraumaDataProvider;
+
+import rft.trauma.android.service.ServerException;
 import android.app.AlertDialog;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.View.OnTouchListener;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
-import com.google.android.maps.Overlay;
 
 /**
  * Main activity with MapView, this activity launches when the app starts
@@ -28,13 +26,14 @@ import com.google.android.maps.Overlay;
  */
 public class MainActivity extends MapActivity
 {
-	private IDataProvider dataProvider = new TraumaDataProvider();
     private static String TAG = "trauma-android";
     
-    MapView mapView;
-    List<Overlay> mapOverlays;
-    Drawable drawable;
-    MapOverlay mapOverlay;
+    private MapView mapView;
+    private Drawable drawable;
+    private MapOverlay mapOverlay;
+    
+    private GeoPoint downLocation;
+    private GeoPoint upLocation;
 
     /**
      * Called when the activity is first created.
@@ -52,16 +51,15 @@ public class MainActivity extends MapActivity
         mapView = (MapView) findViewById(R.id.mapView);
         mapView.setBuiltInZoomControls(true);
         
-        mapOverlays = mapView.getOverlays();
         drawable = this.getResources().getDrawable(R.drawable.pin);
         mapOverlay = new MapOverlay(drawable, this);
-        mapOverlays.add(mapOverlay);
+        mapView.getOverlays().add(mapOverlay);
+        mapOverlay.fillAll();
         
         //mapOverlay.addOverlay(new Marker(1222, new GeoPoint(200, 300), "igen", "nem"));
         
 //        mapView.setOnTouchListener(new OnTouchListener()
 //		{
-//			
 //			@Override
 //			public boolean onTouch(View v, MotionEvent event)
 //			{
@@ -69,7 +67,69 @@ public class MainActivity extends MapActivity
 //				return false;
 //			}
 //		});
-        populateMap();
+        //populateMap();
+        
+    }
+    
+    @Override public boolean onTouchEvent(MotionEvent event)
+    {
+    	switch (event.getAction())
+    	{
+    	case MotionEvent.ACTION_DOWN:
+    		downLocation = mapView.getMapCenter();
+    		break;
+    	case MotionEvent.ACTION_UP:
+    		upLocation = mapView.getMapCenter();
+    		if (!downLocation.equals(upLocation))
+    		{
+    			Thread thread = new Thread()
+    			{
+    				@Override public void run()
+    				{
+    					while (true)
+    					{
+    						try
+    						{
+    							Thread.sleep(100);
+    						}
+    						catch (InterruptedException ex)
+    						{
+    							
+    						}
+    						
+    						GeoPoint gp = mapView.getMapCenter();
+    						if (gp.equals(upLocation))
+    							break;
+    						upLocation = gp;
+    						
+    					}
+    					onMapStop();
+    				}
+    			};
+    			thread.start();
+    		}
+    		break;
+    	}
+    	return super.onTouchEvent(event);
+    }
+    
+    private void onMapStop()
+    {
+    	GeoPoint topLeft = mapView.getProjection().fromPixels(0, 0);
+    	GeoPoint center = mapView.getMapCenter();
+    	CentralPoint cp = CentralPoint.generate(center, topLeft);
+    	
+    	try
+    	{
+    		mapOverlay.fill(cp);
+    	}
+    	catch (ServerException ex)
+    	{
+    		AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+    		dialog.setTitle("Error");
+    		dialog.setMessage(ex.getMessage());
+    		dialog.show();
+    	}
     }
     
     public void populateMap()
@@ -80,7 +140,7 @@ public class MainActivity extends MapActivity
     	//CentralPoint centralPoint = new CentralPoint(mapView.getMapCenter(), 20000);
     	try
     	{
-    		List<Marker> markers = dataProvider.getAllMarkers();
+    		List<Marker> markers = MarkerManager.getAllMarkers();
 
         	for (Iterator<Marker> i = markers.iterator(); i.hasNext();)
         	{
@@ -103,11 +163,5 @@ public class MainActivity extends MapActivity
     {
         return false;
     }
-
-	public IDataProvider getDataProvider()
-	{
-		return dataProvider;
-	}
-
 }
 
