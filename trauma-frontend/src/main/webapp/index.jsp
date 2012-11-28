@@ -14,12 +14,13 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script src="miscJs/geo-min.js" type="text/javascript"></script>
-<script type="text/javascript" src="comms.js"></script>
+
 <script src="miscJs/context.js"></script>
 <script src="miscJs/map.js"></script>
 <script src="service.js"></script>
 <script src="effects.js"></script>
-
+<script src="miscJs/tools.js"></script>
+<script type="text/javascript" src="comms.js"></script>
 
 </head>
 
@@ -38,6 +39,7 @@
 		<div id="lat"></div>
 		<div id="lng"></div>
 
+
 		<input type="text" id="geoloc" readonly="readonly"/>
 		<BR>
 		<textarea id="descfield" class="ownWidth" cols="21"></textarea>
@@ -46,19 +48,19 @@
 		<input onclick="cancelProcess()" type="button" id="cancelBtn" value="Cancel">
 		
 	</div>
+	
+	<div id="response"></div>
 
 	<script>
 
 
-
 		function initMap(p) {
 
-			var comms = new BackendComms();
 			var service = new TraumaService(new Effects());
-			var map = new Map(service,comms);
+			var map = new Map(service);
 			map.init(document.getElementById("map_canvas"), p);
-
-			
+			var kom = new BackendComms();
+			kom.getMarkers(p.coords.longitude,p.coords.latitude,5.00);			
 
 		}
 
@@ -86,7 +88,7 @@
   			{
   			var descEffects = new Effects();
     		descEffects.hide('descbox');
-  			}
+    		}
 
 
 	</script>

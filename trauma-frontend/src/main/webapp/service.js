@@ -11,10 +11,10 @@ var TraumaService = Class.create({
 	addMarkerListener : function(map, latLng) {
 		var self = this;
 
-		if (this.marker) {
-			// remove unsaved marker
+	/*	if (this.marker) {
+			
 			map.removeMarker(this.marker);
-		}
+		}*/
 
 		this.marker = map.showMarker(latLng);
 		document.getElementById('descfield').value = '';

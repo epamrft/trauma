@@ -115,7 +115,7 @@ textarea {
 	bottom: 10px;
 }
 
-#lat, #lng{
+#lat, #lng, #response{
 	display: none;
 }
 
