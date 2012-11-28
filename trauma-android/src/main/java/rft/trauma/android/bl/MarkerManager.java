@@ -22,7 +22,7 @@ public class MarkerManager
 	 */
 	public static void addMarker(Marker marker) throws ServerException
 	{
-		dataProvider.addMarker(marker.getPoint().getLatitudeE6(), marker.getPoint().getLongitudeE6(), marker.getMessage());
+		dataProvider.addMarker(marker.getPoint().getLatitudeE6() / 1E6, marker.getPoint().getLongitudeE6() / 1E6, marker.getMessage());
 	}
 	/**
 	 * @throws ServerException
@@ -36,7 +36,7 @@ public class MarkerManager
 	 */
 	public static List<Marker> getMarkers(CentralPoint centralPoint) throws ServerException
 	{
-		return jSONArrayIntoMarkers(dataProvider.getMarkers(centralPoint.getLongitude(), centralPoint.getLatitude(), centralPoint.getRadius()));
+		return jSONArrayIntoMarkers(dataProvider.getMarkers(centralPoint.getLongitude() / 1E6, centralPoint.getLatitude() / 1E6, centralPoint.getRadius() / 1E6));
 	}
 	/**
 	 * @throws ServerException
@@ -66,11 +66,11 @@ public class MarkerManager
 			{
 				JSONObject obj = array.getJSONObject(i);
 				int id = obj.getInt("id");
-				int latitude = obj.getInt("latitude");
-				int longitude = obj.getInt("longitude");
+				double latitude = obj.getDouble("latitude");
+				double longitude = obj.getDouble("longitude");
 			
 				String desc = obj.getString("desc");
-				Marker m = new Marker(id, new GeoPoint(latitude, longitude), "Marker", desc);
+				Marker m = new Marker(id, new GeoPoint((int)(latitude * 1E6), (int)(longitude * 1E6)), "Marker", desc);
 				list.add(m);
 			}
 			return list;

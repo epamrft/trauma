@@ -37,7 +37,7 @@ public class TraumaDataProvider implements IDataProvider
 	}
 	
 	@Override
-	public void addMarker(long latitude, long longitude, String desc) throws ServerException
+	public void addMarker(double latitude, double longitude, String desc) throws ServerException
 	{
 		HttpClient client = new DefaultHttpClient();
 		String url = serverRoot + "/markers";
@@ -108,6 +108,7 @@ public class TraumaDataProvider implements IDataProvider
 			{
 				if (response.getStatusLine().getStatusCode() != SUCCESS)
 					throw new ServerException("connection error " + response.getStatusLine().getStatusCode());
+					Log.i(TAG, sb.toString());
 				return new JSONArray(sb.toString());
 			}
 			catch (JSONException ex)
@@ -138,13 +139,13 @@ public class TraumaDataProvider implements IDataProvider
 	 * @throws ServerException
 	 */
 	@Override
-	public JSONArray getMarkers(long centralLongitude, long centralLatitude, long centralRadius) throws ServerException
+	public JSONArray getMarkers(double centralLongitude, double centralLatitude, double centralRadius) throws ServerException
 	{
 		HttpClient client = new DefaultHttpClient();
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("central-lan", Long.toString(centralLatitude)));
-		params.add(new BasicNameValuePair("central-lng", Long.toString(centralLongitude)));
-		params.add(new BasicNameValuePair("central-rad", Long.toString(centralRadius)));
+		params.add(new BasicNameValuePair("central-lan", Double.toString(centralLatitude)));
+		params.add(new BasicNameValuePair("central-lng", Double.toString(centralLongitude)));
+		params.add(new BasicNameValuePair("central-rad", Double.toString(centralRadius)));
 		String query = URLEncodedUtils.format(params, "utf-8");
 		String url = serverRoot + "/markers?" + query;
 		HttpGet getRequest = new HttpGet(url);
@@ -227,11 +228,8 @@ public class TraumaDataProvider implements IDataProvider
 		
 		try
 		{
-			JSONObject m = new JSONObject();
-			m.put("desc", description);
-			
-			StringEntity params = new StringEntity(m.toString());
-			post.addHeader("content-type", "application/json");
+			StringEntity params = new StringEntity(description);
+			//post.addHeader("content-type", "string");
 			post.setEntity(params);
 			
 			HttpResponse response = client.execute(post);
@@ -247,10 +245,10 @@ public class TraumaDataProvider implements IDataProvider
 		{
 			throw new ServerException(ex);
 		}
-		catch(JSONException ex)
-		{
-			throw new ServerException(ex);
-		}
+//		catch(JSONException ex)
+//		{
+//			throw new ServerException(ex);
+//		}
 		finally
 		{
 			client.getConnectionManager().shutdown();

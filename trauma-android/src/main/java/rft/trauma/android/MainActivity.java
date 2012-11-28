@@ -115,13 +115,15 @@ public class MainActivity extends MapActivity
     
     private void onMapStop()
     {
-    	GeoPoint topLeft = mapView.getProjection().fromPixels(0, 0);
-    	GeoPoint center = mapView.getMapCenter();
-    	CentralPoint cp = CentralPoint.generate(center, topLeft);
+    	//GeoPoint topLeft = mapView.getProjection().fromPixels(0, 0);
+    	//GeoPoint center = mapView.getMapCenter();
+    	//CentralPoint cp = CentralPoint.generate(center, topLeft);
     	
     	try
     	{
-    		mapOverlay.fill(cp);
+    		//mapOverlay.fill(cp);
+    		//TODO: this should be changed to fill()
+    		mapOverlay.fillAll();
     	}
     	catch (ServerException ex)
     	{

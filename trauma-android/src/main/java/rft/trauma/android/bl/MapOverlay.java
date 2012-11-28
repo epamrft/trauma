@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
+import android.util.Log;
 //import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,8 +76,16 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 	
 	public void fillAll() throws ServerException
 	{
-		mOverlays = (ArrayList<Marker>)MarkerManager.getAllMarkers();
-		populate();
+		List<Marker> markers = MarkerManager.getAllMarkers();
+		for(Iterator<Marker> i = markers.iterator(); i.hasNext(); )
+		{
+			Marker m = i.next();
+			Log.i("marker", m.getMessage() + " " + m.getPoint().getLatitudeE6() + " " + m.getPoint().getLongitudeE6());
+			if (!mOverlays.contains(m))
+			{
+				addOverlay(m);
+			}
+		}
 	}
 	
 	public boolean deleteOverlay(Marker overlay)
@@ -135,6 +144,9 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 				finally
 				{
 					if (d != null) d.dismiss();
+					wipeOverlay();
+					//TODO: this should be changed to fill()
+					fillAll();
 					createDeleteStatusDialog(success, mContext);
 				}
 			}
@@ -159,6 +171,9 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 				finally
 				{
 					if (d != null) d.dismiss();
+					wipeOverlay();
+					//TODO: this should be changed to fill()
+					fillAll();
 					createEditStatusDialog(success, mContext);
 				}
 			}

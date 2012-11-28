@@ -14,7 +14,7 @@ public interface IDataProvider
 	 * @param marker The marker to be added
 	 * @return 200 on success, 500 on error
 	 */
-	public void addMarker(long latitude, long longitude, String desc);	
+	public void addMarker(double latitude, double longitude, String desc);	
 	/**
 	 * Gets all the Markers from the server
 	 * @return returns a list of Markers to be displayed on a MapView
@@ -25,7 +25,7 @@ public interface IDataProvider
 	 * @param centralPoint central point of the screen
 	 * @return returns a list of Markers to be displayed on a MapView
 	 */
-	public JSONArray getMarkers(long centralLongitude, long centralLatitude, long centralRadius);
+	public JSONArray getMarkers(double centralLongitude, double centralLatitude, double centralRadius);
 	/**
 	 * Deletes a Marker object
 	 * @param marker the Marker object to be deleted
