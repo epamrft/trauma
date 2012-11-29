@@ -30,6 +30,48 @@ var Map = Class.create({
 
 		this.addContextListeners(this.map, contextMenu);
 
+		var self = this;
+
+		/*MapMoved - event*/
+
+		google.maps.event.addListener(this.map, 'dragend', function() {
+
+			
+		var url = 'http://trauma.backend.cloudfoundry.com/markers';
+
+      	var data = {
+            "central-lng" : self.map.getCenter().lng(),
+            "central-lan" : self.map.getCenter().lat(),
+            "central-rad" : 5.00
+        };
+
+
+      	new Ajax.Request(url, {
+      	method: 'GET',
+      	parameters: Object.toJSON(data),
+      	contentType: 'application/json',
+      	onSuccess: function(transport) {        
+     	 $('response').update(transport.responseText);
+
+      	var xMarkerArray = JSON.parse($('response').innerHTML);
+
+
+      	for(var i in xMarkerArray){
+
+            var xMarker = xMarkerArray[i];
+            if( i=="each" ) break; 
+            
+            self.map.showMarker(xMarker);
+            
+          }
+
+        }
+      
+      });
+
+
+	});
+
 	},
 
 	addContextMenu : function(map) {
@@ -75,6 +117,7 @@ var Map = Class.create({
 				map.panTo(latLng);
 				break;
 			case 'add_marker_map':
+
 				console.log("Marker Added.");
 				self.service.addMarkerListener(self, latLng);
 				break;
@@ -84,20 +127,44 @@ var Map = Class.create({
 
 	},
 
-	showMarker : function(latLng) {
+	showMarker : function(xMarkerInfo) {
 		var marker = new google.maps.Marker({
-			position : latLng
+			position: new google.maps.LatLng(xMarkerInfo.latitude,xMarkerInfo.longitude),
+			ID: xMarkerInfo.id,
+			map: this.map,
+      		description: xMarkerInfo.desc
 		});
 
 		// To add the marker to the map, call setMap();
 
-		//marker.setMap(this.map);
-		this.revGeocode(latLng);
+		marker.setMap(this.map);
+		this.revGeocode(this.position);
+		this.onMarkerClick(marker,this.revGeocode);
 		return marker;
 	},
 
 	removeMarker : function(marker) {
 		marker.setMap(null);
+	},
+
+	onMarkerClick : function (marker,geocoder){
+
+		google.maps.event.addListener(marker, 'click', function() {
+
+
+      	var effect = new Effects();
+		geocoder(this.position);
+      	document.getElementById('editBoxDescfield').value = this.description;
+        $('actualMarkerID').update(this.ID);
+
+      	effect.hide('descbox', function(){});
+      	effect.show('editbox', function() {
+		effect.focus('editBoxDescfield');			
+			});
+
+    	});
+
+		
 	},
 
 
@@ -109,8 +176,10 @@ var Map = Class.create({
         	if (true) {
         	//Always true
         	var geoLocBox = document.getElementById('geoloc');
+        	var editLocBox = document.getElementById('editBoxGeoloc');
 				if (geoLocBox)
 				{
+				editLocBox.value = results[0].formatted_address;
 				geoLocBox.value = results[0].formatted_address;
 				}
 
@@ -125,6 +194,15 @@ var Map = Class.create({
 
     });
   		
+	},
+
+
+	getMid : function (){
+
+		return this.map.getCenter();
+
 	}
+
+	
 
 });

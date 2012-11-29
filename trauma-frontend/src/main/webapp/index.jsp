@@ -36,10 +36,6 @@
 
 	<div id="descbox" style="display: none;">
 
-		<div id="lat"></div>
-		<div id="lng"></div>
-
-
 		<input type="text" id="geoloc" readonly="readonly"/>
 		<BR>
 		<textarea id="descfield" class="ownWidth" cols="21"></textarea>
@@ -48,8 +44,23 @@
 		<input onclick="cancelProcess()" type="button" id="cancelBtn" value="Cancel">
 		
 	</div>
-	
+
+
+	<div id="editbox" style="display: none;">
+
+		<input type="text" id="editBoxGeoloc" readonly="readonly"/>
+		<BR>
+		<textarea id="editBoxDescfield" class="ownWidth" cols="21"></textarea>
+		<BR>
+		<input onclick="editInfo()" type="button" id="editBtn" value="Edit">
+		<input onclick="deleteMarker()" type="button" id="delBtn" value="Delete">
+		
+	</div>
+
+	<div id="lat"></div>
+	<div id="lng"></div>
 	<div id="response"></div>
+	<div id="actualMarkerID"></div>
 
 	<script>
 
@@ -58,9 +69,12 @@
 
 			var service = new TraumaService(new Effects());
 			var map = new Map(service);
+			var kom = new BackendComms(map);
 			map.init(document.getElementById("map_canvas"), p);
-			var kom = new BackendComms();
-			kom.getMarkers(p.coords.longitude,p.coords.latitude,5.00);			
+			kom.getMarkers(p.coords.longitude,p.coords.latitude,5.00,map);
+
+			
+				
 
 		}
 
@@ -88,6 +102,20 @@
   			{
   			var descEffects = new Effects();
     		descEffects.hide('descbox');
+    		}
+
+    	function deleteMarker()
+  			{
+  			var descEffects = new Effects();
+    		descEffects.hide('editbox');
+    		var com = new BackendComms();
+    		com.deleteMarker();
+    		}
+
+    	function editInfo()
+  			{
+  			var com = new BackendComms();
+    		document.getElementById('editBoxDescfield').value = com.updateMarker();  
     		}
 
 

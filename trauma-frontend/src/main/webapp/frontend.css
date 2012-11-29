@@ -39,7 +39,7 @@ html,body {
 	z-index: 1;
 }
 
-#descbox p {
+#descbox p ,#editbox p{
 	text-align: left;
 }
 
@@ -68,7 +68,7 @@ html,body {
 
 
 /*Start of Description Box Definition*/
-#descbox {
+#descbox,#editbox {
 	text-align: center;
 	box-shadow: 3px 3px 1px #888888;
 	border: 2px solid;
@@ -84,7 +84,7 @@ html,body {
 	z-index: 3;
 }
 
-#descfield {
+#descfield, #editBoxDescfield {
 	top: 45px;
 	height: 75%;
 	bottom: 40px;
@@ -98,7 +98,7 @@ textarea {
 	resize: none;
 }
 
-#geoloc {
+#editBoxGeoloc, #geoloc {
 	border-color: black;
 	border-style: solid;
 	border-width: thin;
@@ -109,13 +109,13 @@ textarea {
 	font-size: 6pt;
 }
 
-#saveBtn, #cancelBtn{
+#saveBtn, #cancelBtn, #delBtn ,#editBtn{
 	margin: 5px;
 	width: 85px;
 	bottom: 10px;
 }
 
-#lat, #lng, #response{
+#lat, #lng, #response, #actualMarkerID{
 	display: none;
 }
 
