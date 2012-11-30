@@ -21,7 +21,7 @@ import com.epam.pf.trauma.backend.config.PersistenceJPAConfig;
 import com.epam.pf.trauma.backend.config.WebMvcConfig;
 import com.epam.pf.trauma.backend.service.domain.Marker;
 
-public class TestBase {
+public abstract class AbstractTestConfig {
 
 	protected MockMvc mockMvc;
 

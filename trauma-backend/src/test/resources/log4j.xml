@@ -9,6 +9,13 @@
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
 	</appender>
+	<appender name="FA" class="org.apache.log4j.FileAppender">
+		<param name="File" value="traumalog.log"/>
+		<param name="Threshold" value="debug"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout>
+	</appender>
 
 	<!-- Application Loggers -->
 	<logger name="com.epam.pf.trauma.backend">
@@ -47,6 +54,7 @@
 	<root>
 		<priority value="debug" />
 		<appender-ref ref="console" />
+		<appender-ref ref="FA" />
 	</root>
 
 </log4j:configuration>

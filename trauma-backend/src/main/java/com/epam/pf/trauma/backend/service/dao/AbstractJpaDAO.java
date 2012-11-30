@@ -6,6 +6,8 @@ import java.util.Collection;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.epam.pf.trauma.backend.service.domain.CentralPoint;
+
 public abstract class AbstractJpaDAO<T extends Serializable> {
 
 	private Class<T> clazz;
@@ -23,6 +25,9 @@ public abstract class AbstractJpaDAO<T extends Serializable> {
 
 	public Collection<T> findAll() {
 		return entityManager.createQuery("FROM " + clazz.getName(), clazz).getResultList();
+	}
+	public Collection<T> findAll(CentralPoint centralPoint) {
+		return entityManager.createQuery("FROM " + clazz.getName()+" WHERE latitude >= "+(centralPoint.getLatitude()-centralPoint.getRadius())+" AND latitude <="+(centralPoint.getLatitude()+centralPoint.getRadius())+" AND longitude >= "+(centralPoint.getLongitude()-centralPoint.getRadius())+" AND longitude <= "+(centralPoint.getLongitude()+centralPoint.getRadius()), clazz).getResultList();
 	}
 
 	public void save(final T entity) {

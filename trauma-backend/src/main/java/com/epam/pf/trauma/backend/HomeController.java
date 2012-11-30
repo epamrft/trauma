@@ -30,7 +30,15 @@ public class HomeController {
 
 	@Inject
 	private MarkerService markerService;
-
+	/**
+	 * Handles the requests on /markers                           
+	 *
+	 *    
+	 * 
+	 *
+	 * @param  Central point's coordinates and a radius           
+	 * @return Collection of markers
+	 */
 	@RequestMapping(value = "/markers", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
@@ -40,21 +48,45 @@ public class HomeController {
 		else
 		return markerService.getMarkers(new CentralPoint(centrallan, centrallng, centralrad));
 	}
-
+	/**
+	 * Handles the delete requests on /markers/{id of a marker}                           
+	 *
+	 *    
+	 * 
+	 *
+	 *          
+	 * 
+	 */
 	@RequestMapping(value = "/markers/{id}", method = RequestMethod.DELETE, produces = "application/json;charset=UTF-8")
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public void deleteMarker(@PathVariable("id") int id) {
 		markerService.deleteMarker(id);
 	}
-
+	/**
+	 * Handles the edit requests on /markers/{id of a marker}                            
+	 *
+	 *    
+	 * 
+	 *
+	 * @param  Description string           
+	 * @return The edited marker
+	 */
 	@RequestMapping(value = "/markers/{id}", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public Marker editMarker(@PathVariable("id") int id, @RequestBody String desc) {
 		return markerService.editMarker(id, desc);
 	}
-
+	/**
+	 * Handles the  add requests on /markers                            
+	 *
+	 *    
+	 * 
+	 *
+	 * @param  The markers attributes           
+	 * @return The marker
+	 */
 	@RequestMapping(value = "/markers", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseStatus( HttpStatus.CREATED )
 	@ResponseBody

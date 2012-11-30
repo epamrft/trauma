@@ -14,7 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.server.MvcResult;
 import com.epam.pf.trauma.backend.service.domain.Marker;
 
-public class MarkerTest extends TestBase {
+public class MarkerTest extends AbstractTestConfig {
 	@Before
 	public void ownSetup() throws JsonGenerationException,
 			JsonMappingException, IOException, Exception {

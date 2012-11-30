@@ -13,7 +13,7 @@ import org.springframework.test.web.server.MvcResult;
 import org.springframework.test.web.server.request.MockMvcRequestBuilders;
 import com.epam.pf.trauma.backend.service.domain.Marker;
 
-public class HomeControllerTest extends TestBase {
+public class HomeControllerTest extends AbstractTestConfig {
 
 	@Before
 	public void ownSetup() throws JsonGenerationException, JsonMappingException, IOException, Exception{

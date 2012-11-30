@@ -1,0 +1,275 @@
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - Edit marker: id: 1, desc: edittest
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Editing Marker Id: 1
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Edited to: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Edited to: Marker [id=1, longitude=42.0, latitude=42.0, desc=edittest]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get all markers: {}
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Listing all Markers: [Marker [id=1, longitude=42.0, latitude=42.0, desc=test]]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - number of found markers: 1
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Deleting Marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Deleted
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get all markers: {}
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Listing all Markers: [Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2], Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3], Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4], Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - number of found markers: 4
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get markers: CentralPoint [longitude=40.0, latitude=40.0, radius=20.0]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Getting Markers with Central: CentralPoint [longitude=40.0, latitude=40.0, radius=20.0]
+ERROR: org.hibernate.hql.PARSER - line 1:95: unexpected token: BETWEEN
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get all markers: {}
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Listing all Markers: [Marker [id=1, longitude=42.0, latitude=42.0, desc=test1], Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2], Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3], Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4], Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - number of found markers: 5
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - Edit marker: id: 1, desc: edittest
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Editing Marker Id: 1
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Edited to: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Edited to: Marker [id=1, longitude=42.0, latitude=42.0, desc=edittest]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get all markers: {}
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Listing all Markers: [Marker [id=1, longitude=42.0, latitude=42.0, desc=test]]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - number of found markers: 1
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Deleting Marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Deleted
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get all markers: {}
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Listing all Markers: [Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2], Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3], Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4], Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - number of found markers: 4
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get markers: CentralPoint [longitude=40.0, latitude=40.0, radius=20.0]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Getting Markers with Central: CentralPoint [longitude=40.0, latitude=40.0, radius=20.0]
+ERROR: org.hibernate.hql.PARSER - line 1:96: unexpected token: BETWEEN
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get all markers: {}
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Listing all Markers: [Marker [id=1, longitude=42.0, latitude=42.0, desc=test1], Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2], Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3], Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4], Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - number of found markers: 5
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get all markers: {}
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Listing all Markers: [Marker [id=1, longitude=42.0, latitude=42.0, desc=test]]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - number of found markers: 1
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - Edit marker: id: 1, desc: edittest
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Editing Marker Id: 1
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Edited to: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Edited to: Marker [id=1, longitude=42.0, latitude=42.0, desc=edittest]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Deleting Marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Deleted
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get all markers: {}
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Listing all Markers: [Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2], Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3], Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4], Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - number of found markers: 4
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get markers: CentralPoint [longitude=40.0, latitude=40.0, radius=20.0]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Getting Markers with Central: CentralPoint [longitude=40.0, latitude=40.0, radius=20.0]
+ERROR: org.hibernate.hql.PARSER - line 1:96: unexpected token: BETWEEN
+ERROR: org.hibernate.hql.PARSER - line 1:123: unexpected token: 60.0
+WARN : org.hibernate.hql.ast.HqlParser - processEqualityExpression() : No expression to process!
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get all markers: {}
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Listing all Markers: [Marker [id=1, longitude=42.0, latitude=42.0, desc=test1], Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2], Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3], Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4], Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - number of found markers: 5
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - Edit marker: id: 1, desc: edittest
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Editing Marker Id: 1
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Edited to: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Edited to: Marker [id=1, longitude=42.0, latitude=42.0, desc=edittest]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get all markers: {}
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Listing all Markers: [Marker [id=1, longitude=42.0, latitude=42.0, desc=test]]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - number of found markers: 1
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Deleting Marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Deleted
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get all markers: {}
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Listing all Markers: [Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2], Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3], Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4], Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - number of found markers: 4
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get markers: CentralPoint [longitude=40.0, latitude=40.0, radius=20.0]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Getting Markers with Central: CentralPoint [longitude=40.0, latitude=40.0, radius=20.0]
+ERROR: org.hibernate.hql.PARSER - line 1:105: unexpected token: BETWEEN
+ERROR: org.hibernate.hql.PARSER - line 1:132: unexpected token: 60.0
+WARN : org.hibernate.hql.ast.HqlParser - processEqualityExpression() : No expression to process!
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get all markers: {}
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Listing all Markers: [Marker [id=1, longitude=42.0, latitude=42.0, desc=test1], Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2], Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3], Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4], Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - number of found markers: 5
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - Edit marker: id: 1, desc: edittest
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Editing Marker Id: 1
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Edited to: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Edited to: Marker [id=1, longitude=42.0, latitude=42.0, desc=edittest]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get all markers: {}
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Listing all Markers: [Marker [id=1, longitude=42.0, latitude=42.0, desc=test]]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - number of found markers: 1
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Deleting Marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Deleted
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get all markers: {}
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Listing all Markers: [Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2], Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3], Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4], Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - number of found markers: 4
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get markers: CentralPoint [longitude=40.0, latitude=40.0, radius=20.0]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Getting Markers with Central: CentralPoint [longitude=40.0, latitude=40.0, radius=20.0]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Markers within Central: [Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - size of founded markers: 1
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=1, longitude=42.0, latitude=42.0, desc=test1]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4]
+DEBUG: com.epam.pf.trauma.backend.HomeController - Marker: Marker [id=0, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Added marker: Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - get all markers: {}
+DEBUG: com.epam.pf.trauma.backend.service.dao.MarkerDatabaseDAO - Listing all Markers: [Marker [id=1, longitude=42.0, latitude=42.0, desc=test1], Marker [id=2, longitude=-42.0, latitude=42.0, desc=test2], Marker [id=3, longitude=42.0, latitude=-42.0, desc=test3], Marker [id=4, longitude=-42.0, latitude=-42.0, desc=test4], Marker [id=5, longitude=1.123123, latitude=0.32423, desc=test5]]
+DEBUG: com.epam.pf.trauma.backend.service.MarkerService - number of found markers: 5

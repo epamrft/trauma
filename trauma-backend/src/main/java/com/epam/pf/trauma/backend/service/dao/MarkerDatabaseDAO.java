@@ -33,14 +33,10 @@ public class MarkerDatabaseDAO extends AbstractJpaDAO<Marker> implements MarkerD
 	public Collection<Marker> getMarkers(CentralPoint centralPoint) {
 		MarkerDatabaseDAO.LOGGER.debug("Getting Markers with Central: {}", centralPoint);
 
-		Collection<Marker> markers = new LinkedList<Marker>();
-		for (Marker marker : this.findAll()) {
-			if (centralPoint.inRadius(marker)) {
-				markers.add(marker);
-			}
-
+		Collection<Marker> markers = new LinkedList<Marker>(findAll(centralPoint));
+		
 			MarkerDatabaseDAO.LOGGER.debug("Markers within Central: {}", markers);
-		}
+		
 		return markers;
 	}
 
