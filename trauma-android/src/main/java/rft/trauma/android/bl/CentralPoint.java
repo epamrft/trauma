@@ -41,15 +41,15 @@ public class CentralPoint
 	
 	public static CentralPoint generate(GeoPoint central, GeoPoint corner)
 	{
-		int x1 = corner.getLatitudeE6();
-    	int y1 = corner.getLongitudeE6();
-    	int x2 = central.getLatitudeE6();
-    	int y2 = central.getLongitudeE6();
+		double x1 = corner.getLatitudeE6() / 1E6;
+    	double y1 = corner.getLongitudeE6() / 1E6;
+    	double x2 = central.getLatitudeE6() / 1E6;
+    	double y2 = central.getLongitudeE6() / 1E6;
     	double powX = Math.pow((x2 - x1), 2D);
     	double powY = Math.pow((y2 - y1), 2D);
-    	int radius = (int)Math.sqrt(powX + powY);
+    	Double radius = Math.sqrt(powX + powY);
     	
-    	return new CentralPoint(central, radius);
+    	return new CentralPoint(central, radius.intValue());
 	}
 	
 	@Override public boolean equals(Object o)

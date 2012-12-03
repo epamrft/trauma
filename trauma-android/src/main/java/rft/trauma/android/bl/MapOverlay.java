@@ -21,6 +21,7 @@ import java.util.Locale;
 
 import rft.trauma.android.R;
 import rft.trauma.android.service.ServerException;
+import rft.trauma.android.service.TraumaDataProvider;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
@@ -42,50 +43,69 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 	
 	private AlertDialog d = null;
 	
+	private IMarkerManager markerManager;
+	
 	public MapOverlay(Drawable defaultMarker, Context context)
 	{
 		super(boundCenterBottom(defaultMarker));
+		markerManager = new MarkerManager(new TraumaDataProvider());
 		mContext = context;
+		populate();
 	}
 
 	public boolean addOverlay(Marker overlay)
 	{
 		boolean ret = mOverlays.add(overlay);
+		setLastFocusedIndex(-1);
 		populate();
 		return ret;
+	}
+	
+	private void replaceList(List<Marker> list)
+	{
+		mOverlays = (ArrayList<Marker>) list;
+		setLastFocusedIndex(-1);
+		populate();
 	}
 	
 	public void wipeOverlay()
 	{
 		mOverlays.clear();
+		setLastFocusedIndex(-1);
 		populate();
 	}
 	
 	public void fill(CentralPoint cp) throws ServerException
 	{
-		List<Marker> markers = MarkerManager.getMarkers(cp);
+			Log.i("trauma-android", "fill method started");
+		List<Marker> markers = markerManager.getMarkers(cp);
 		for(Iterator<Marker> i = markers.iterator(); i.hasNext(); )
 		{
 			Marker m = i.next();
-			if (!mOverlays.contains(m))
+				Log.d("trauma-android", m.toString());
+			if (mOverlays.contains(m));
 			{
 				addOverlay(m);
+					Log.w("trauma-android", "the item was added");
 			}
 		}
 	}
 	
 	public void fillAll() throws ServerException
 	{
-		List<Marker> markers = MarkerManager.getAllMarkers();
-		for(Iterator<Marker> i = markers.iterator(); i.hasNext(); )
-		{
-			Marker m = i.next();
-			Log.i("marker", m.getMessage() + " " + m.getPoint().getLatitudeE6() + " " + m.getPoint().getLongitudeE6());
-			if (!mOverlays.contains(m))
-			{
-				addOverlay(m);
-			}
-		}
+			Log.i("trauma-android", "entered fillall");
+		List<Marker> markers = markerManager.getAllMarkers();
+		replaceList(markers);
+//		for(Iterator<Marker> i = markers.iterator(); i.hasNext(); )
+//		{
+//			Marker m = i.next();
+//				Log.i("trauma-android", m.getMessage().toString());
+//			if (mOverlays.indexOf(m) == -1)
+//			{
+//				Log.i("trauma-android", "item added");
+//				addOverlay(m);
+//			}
+//		}
 	}
 	
 	public boolean deleteOverlay(Marker overlay)
@@ -147,6 +167,7 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 					wipeOverlay();
 					//TODO: this should be changed to fill()
 					fillAll();
+					
 					createDeleteStatusDialog(success, mContext);
 				}
 			}

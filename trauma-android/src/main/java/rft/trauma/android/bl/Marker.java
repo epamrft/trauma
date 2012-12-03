@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import rft.trauma.android.service.ServerException;
+import rft.trauma.android.service.TraumaDataProvider;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.OverlayItem;
@@ -12,27 +13,35 @@ public class Marker extends OverlayItem
 {	
 	private int id;
 	private String message;
+	private IMarkerManager markerManager;
 	
 	public Marker(int id, GeoPoint point, String title, String message)
 	{
-		super(point, title, message);
+		this(point, title, message);
 		this.setId(id);
+		this.markerManager = new MarkerManager(new TraumaDataProvider());
+	}
+	
+	public Marker(GeoPoint point, String title, String message)
+	{
+		super(point, title, message);
 		this.setMessage(message);
+		this.id = -1;
 	}
 
 	public void delete() throws ServerException
 	{
-		MarkerManager.deleteMarker(this);
+		markerManager.deleteMarker(this);
 	}
 	
 	public void edit(String description) throws ServerException
 	{
-		MarkerManager.editMarker(this, description);
+		markerManager.editMarker(this, description);
 	}
 	
 	public void add() throws ServerException
 	{
-		MarkerManager.addMarker(this);
+		markerManager.addMarker(this);
 	}
 	
 	public int getId()
@@ -78,11 +87,17 @@ public class Marker extends OverlayItem
 	{
 		if (o != null && o instanceof Marker)
 		{
-			if (o == this) return true;
+			//if (o == this) return true;
 			Marker m = (Marker)o;
 			if (m.id == this.id && m.message == this.message && m.getPoint().getLatitudeE6() == this.getPoint().getLatitudeE6() && m.getPoint().getLongitudeE6() == this.getPoint().getLongitudeE6())
 				return true;
 		}
 		return false;
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		return this.id;
 	}
 }

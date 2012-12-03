@@ -29,7 +29,8 @@ public class TraumaDataProvider implements IDataProvider
 	
 	private static String TAG = "trauma-android";
 	
-	private static int SUCCESS = 200;
+	private final int SUCCESS = 200;
+	private final int SUCCESS_ADD = 201;
 	
 	public TraumaDataProvider()
 	{
@@ -56,8 +57,16 @@ public class TraumaDataProvider implements IDataProvider
 			
 			HttpResponse response = client.execute(post);
 			
-			if (response.getStatusLine().getStatusCode() != SUCCESS)
+			switch(response.getStatusLine().getStatusCode())
+			{
+			case SUCCESS:
+				break;
+			case SUCCESS_ADD:
+				break;
+			default:
+				Log.i(TAG, "status code: "+ Integer.toString(response.getStatusLine().getStatusCode()));
 				throw new ServerException("connection error " + response.getStatusLine().getStatusCode());
+			}
 		}
 		catch(ClientProtocolException ex)
 		{

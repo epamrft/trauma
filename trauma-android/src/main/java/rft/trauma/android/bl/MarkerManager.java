@@ -13,42 +13,52 @@ import rft.trauma.android.service.IDataProvider;
 import rft.trauma.android.service.ServerException;
 import rft.trauma.android.service.TraumaDataProvider;
 
-public class MarkerManager
+public class MarkerManager implements IMarkerManager
 {
-	private static IDataProvider dataProvider = new TraumaDataProvider();
+	private IDataProvider dataProvider;
+	
+	public MarkerManager()
+	{
+		dataProvider = new TraumaDataProvider();
+	}
+	
+	public MarkerManager(IDataProvider dataProvider)
+	{
+		this.dataProvider = dataProvider;
+	}
 	
 	/**
 	 * @throws ServerException
 	 */
-	public static void addMarker(Marker marker) throws ServerException
+	public void addMarker(Marker marker) throws ServerException
 	{
 		dataProvider.addMarker(marker.getPoint().getLatitudeE6() / 1E6, marker.getPoint().getLongitudeE6() / 1E6, marker.getMessage());
 	}
 	/**
 	 * @throws ServerException
 	 */
-	public static void deleteMarker(Marker marker) throws ServerException
+	public void deleteMarker(Marker marker) throws ServerException
 	{
 		dataProvider.deleteMarker(marker.getId());
 	}
 	/**
 	 * @throws ServerException
 	 */
-	public static List<Marker> getMarkers(CentralPoint centralPoint) throws ServerException
+	public List<Marker> getMarkers(CentralPoint centralPoint) throws ServerException
 	{
 		return jSONArrayIntoMarkers(dataProvider.getMarkers(centralPoint.getLongitude() / 1E6, centralPoint.getLatitude() / 1E6, centralPoint.getRadius() / 1E6));
 	}
 	/**
 	 * @throws ServerException
 	 */
-	public static List<Marker> getAllMarkers() throws ServerException
+	public List<Marker> getAllMarkers() throws ServerException
 	{
 		return jSONArrayIntoMarkers(dataProvider.getAllMarkers());
 	}
 	/**
 	 * @throws ServerException
 	 */
-	public static void editMarker(Marker marker, String description) throws ServerException
+	public void editMarker(Marker marker, String description) throws ServerException
 	{
 		dataProvider.editMarker(marker.getId(), description);
 	}

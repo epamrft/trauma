@@ -14,5 +14,12 @@
     <string name="good_editing">The Marker was successfully edited.</string>
     <string name="wrong_delete">Something went wrong upon deleting the Marker.\nError code:</string>
     <string name="good_delete">The Marker was successfully deleted.</string>
-    <string name="server_error">An error occured while communicating with the server</string>
+    <string name="server_error">An error occurred while communicating with the server</string>
+    <string name="addmarker">Add Marker</string>
+    <string name="cancel">Cancel</string>
+    <string name="good_adding">Marker successfully added</string>
+    <string name="wrong_adding">There was an error while placing the Marker</string>
+    <string name="satview">Satellite view</string>
+    <string name="mapview">Map view</string>
+    <string name="exit">Exit TrAUMa</string>
 </resources>
