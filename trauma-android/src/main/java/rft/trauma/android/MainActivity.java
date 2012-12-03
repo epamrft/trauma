@@ -168,9 +168,24 @@ public class MainActivity extends MapActivity
 				try
 				{
 					markerManager.addMarker(new Marker(point, "Marker", descEditText.getText().toString()));
-					mapView.getMapOverlay().wipeOverlay();
 					//TODO: this should be changed to fill()
-					mapView.getMapOverlay().fillAll();
+					new Thread(new Runnable()
+					{
+						@Override
+						public void run()
+						{
+							try
+							{
+								Thread.sleep(200);
+							}
+							catch (InterruptedException e)
+							{
+								
+							}
+							mapView.getMapOverlay().fillAll();
+							mapView.postInvalidate();
+						}
+					}).start();
 				}
 				catch(ServerException ex)
 				{

@@ -53,7 +53,7 @@ public class TraumaMapView extends MapView
 	private void initObj()
     {
     	drawable = getContext().getResources().getDrawable(R.drawable.pin);
-    	mapOverlay = new MapOverlay(drawable, getContext());
+    	mapOverlay = new MapOverlay(drawable, getContext(), this);
     	getOverlays().add(mapOverlay);
     	mapOverlay.wipeOverlay();
     	//mapOverlay.fill(getCentralPoint());

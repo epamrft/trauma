@@ -25,6 +25,7 @@ import rft.trauma.android.service.TraumaDataProvider;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
+import com.google.android.maps.MapView;
 
 /**
  * A Marker provider overlay for a MapView object
@@ -37,6 +38,7 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 	
 	private ArrayList<Marker> mOverlays = new ArrayList<Marker>();
 	private Context mContext;
+	private MapView mapView;
 	
 	private Marker item;
 	private EditText descEditText;
@@ -45,9 +47,10 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 	
 	private IMarkerManager markerManager;
 	
-	public MapOverlay(Drawable defaultMarker, Context context)
+	public MapOverlay(Drawable defaultMarker, Context context, MapView mapView)
 	{
 		super(boundCenterBottom(defaultMarker));
+		this.mapView = mapView;
 		markerManager = new MarkerManager(new TraumaDataProvider());
 		mContext = context;
 		populate();
@@ -93,24 +96,14 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 	
 	public void fillAll() throws ServerException
 	{
-			Log.i("trauma-android", "entered fillall");
 		List<Marker> markers = markerManager.getAllMarkers();
 		replaceList(markers);
-//		for(Iterator<Marker> i = markers.iterator(); i.hasNext(); )
-//		{
-//			Marker m = i.next();
-//				Log.i("trauma-android", m.getMessage().toString());
-//			if (mOverlays.indexOf(m) == -1)
-//			{
-//				Log.i("trauma-android", "item added");
-//				addOverlay(m);
-//			}
-//		}
 	}
 	
 	public boolean deleteOverlay(Marker overlay)
 	{
 		boolean ret = mOverlays.remove(overlay);
+		setLastFocusedIndex(-1);
 		populate();
 		return ret;
 	}
@@ -164,9 +157,24 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 				finally
 				{
 					if (d != null) d.dismiss();
-					wipeOverlay();
 					//TODO: this should be changed to fill()
-					fillAll();
+					new Thread(new Runnable()
+					{
+						@Override
+						public void run()
+						{
+							try
+							{
+								Thread.sleep(200);
+							}
+							catch (InterruptedException e)
+							{
+								Log.w("trauma-android", "thread interrupted");
+							}
+							fillAll();
+							mapView.postInvalidate();
+						}
+					}).start();
 					
 					createDeleteStatusDialog(success, mContext);
 				}
