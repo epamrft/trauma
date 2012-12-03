@@ -26,10 +26,9 @@ Installing
 1a. Plug in your Android device
 	OR
 1b. Start the Virtual Device that you created earlier with the command `emulator @Android10`
-2. Go to the trauma-android directory (where the pom.xml is located) and type `mvn install`. This will create an *.apk to the ./target/ folder
-3a. To install the application to your Android smartphone/Virtual Device navigate to the target folder, find the *.apk file (if it had the name trauma.apk) and write `adb install trauma.apk`
-	OR
-3b. If you already have the application and you want to update it `adb install -r trauma.apk`
+2. Go to the trauma-android directory (where the pom.xml is located) and type `mvn clean install`. This will create an *.apk to the ./target/ folder
+3. To install the app into your Android device or the Virtual Device, type `mvn android:deploy`
+4. From here, you can either start TrAUMa manually from the device or type `mvn android:run` to start it automatically
 
 ************************
 Help and links
@@ -52,8 +51,3 @@ To download the trauma project from GitHub, follow these steps:
 4. Add the location of the trauma project to Git using the `git remote add trauma https://github.com/epamrft/trauma.git` command
 5. Download the files to your local repo using the `git pull trauma master` command
 6. Check out the files from your local repo using the git checkout command
-
-************************
-Misc
-************************
-Files and folders like project.properties, .settings/, gen/, etc. are left in the repository intentionally, they are needed by the Android SDK
