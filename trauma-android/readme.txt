@@ -51,3 +51,9 @@ To download the trauma project from GitHub, follow these steps:
 4. Add the location of the trauma project to Git using the `git remote add trauma https://github.com/epamrft/trauma.git` command
 5. Download the files to your local repo using the `git pull trauma master` command
 6. Check out the files from your local repo using the git checkout command
+
+************************
+Alternate download link
+************************
+The built .apk file can be directly downloaded from here:
+http://speedy.sh/8HDS2/rft.trauma.android-1.apk
