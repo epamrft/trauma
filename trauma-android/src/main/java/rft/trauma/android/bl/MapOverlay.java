@@ -47,6 +47,12 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 	
 	private IMarkerManager markerManager;
 	
+	/**
+	 * Initializes a new MapOverlay
+	 * @param defaultMarker the drawables of the Markers that will be displayed on the MapView
+	 * @param context the context of the MapView
+	 * @param mapView the MapView itself
+	 */
 	public MapOverlay(Drawable defaultMarker, Context context, MapView mapView)
 	{
 		super(boundCenterBottom(defaultMarker));
@@ -56,6 +62,11 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 		populate();
 	}
 
+	/**
+	 * Adds a new Marker to the overlay
+	 * @param overlay the Marker to be added
+	 * @return true if the Marker was added, false otherwise
+	 */
 	public boolean addOverlay(Marker overlay)
 	{
 		boolean ret = mOverlays.add(overlay);
@@ -64,6 +75,10 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 		return ret;
 	}
 	
+	/**
+	 * replaces the overlay list with a new one
+	 * @param list the new overlay list
+	 */
 	private void replaceList(List<Marker> list)
 	{
 		mOverlays = (ArrayList<Marker>) list;
@@ -71,6 +86,9 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 		populate();
 	}
 	
+	/**
+	 * clears the overlays from the map
+	 */
 	public void wipeOverlay()
 	{
 		mOverlays.clear();
@@ -78,6 +96,11 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 		populate();
 	}
 	
+	/**
+	 * fills the map with markers around a Centralpoint
+	 * @param cp the CentralPoint
+	 * @throws ServerException throws ServerException if something goes wrong
+	 */
 	public void fill(CentralPoint cp) throws ServerException
 	{
 			Log.i("trauma-android", "fill method started");
@@ -94,12 +117,21 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 		}
 	}
 	
+	/**
+	 * Fills the map with all the Markers from the server
+	 * @throws ServerException thrown when something goes wrong
+	 */
 	public void fillAll() throws ServerException
 	{
 		List<Marker> markers = markerManager.getAllMarkers();
 		replaceList(markers);
 	}
 	
+	/**
+	 * deletes a specific overlay from the map
+	 * @param overlay the overlay to be deleted
+	 * @return true if it was deleted, false otherwise
+	 */
 	public boolean deleteOverlay(Marker overlay)
 	{
 		boolean ret = mOverlays.remove(overlay);
@@ -108,6 +140,11 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 		return ret;
 	}
 	
+	/**
+	 * checks if the map contains a marker
+	 * @param overlay the marker that is need to be checked
+	 * @return true if the map contains the marker, false otherwise
+	 */
 	public boolean containsOverlay(Marker overlay)
 	{
 		return mOverlays.contains(overlay);
@@ -125,6 +162,9 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 		return mOverlays.size();
 	}
 	
+	/**
+	 * This event fires when the user tapps on a Marker
+	 */
 	@Override
 	protected boolean onTap(int index)
 	{
@@ -219,6 +259,11 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 		return true;
 	}
 	
+	/**
+	 * Gets the address from a GeoPoint
+	 * @param point the geopoint from which the address needs to be parsed
+	 * @return the string representation of the address of the geopoint
+	 */
 	private String getAddressFromGeoPoint(GeoPoint point)
 	{
 		Geocoder coder = new Geocoder(mContext, Locale.getDefault());
@@ -242,6 +287,12 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 		}
 	}
 
+	/**
+	 * creates a new AlertDialog that indicates if the creation of a Marker was successful
+	 * @param success set this true if the creation was successful
+	 * @param cnt the context in which the dialog should appear
+	 * @return return the AlertDialog that represents the result of the Marker creation
+	 */
 	private AlertDialog createDeleteStatusDialog(boolean success, Context cnt)
 	{
 		AlertDialog.Builder dialog = new AlertDialog.Builder(cnt);
@@ -260,6 +311,12 @@ public class MapOverlay extends ItemizedOverlay<Marker>
 		return dialog.show();
 	}
 	
+	/**
+	 * creates a new AlertDialog that indicates if the editing of a Marker was successful
+	 * @param success set this true if the editing was successful
+	 * @param cnt the context in which the dialog should appear
+	 * @return return the AlertDialog that represents the result of the Marker editing
+	 */
 	private AlertDialog createEditStatusDialog(boolean success, Context cnt)
 	{
 		AlertDialog.Builder dialog = new AlertDialog.Builder(cnt);

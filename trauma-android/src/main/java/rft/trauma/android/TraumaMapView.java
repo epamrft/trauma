@@ -17,10 +17,25 @@ import android.view.MotionEvent;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapView;
 
+/**
+ * A custom MapView that can be displayed on the screen
+ * @author Nagy Gergo
+ * @version 1.0.0
+ */
 public class TraumaMapView extends MapView
 {
+	/**
+	 * The interface representing a Longpress action
+	 * @author Nagy Gergo
+	 * @version 1.0.0
+	 */
 	public interface OnLongpressListener
 	{
+		/**
+		 * This event fires when the map is longpressed
+		 * @param view The MapView in which the longpress occured
+		 * @param lonpressLocation The location of the longpress
+		 */
 		public void onLongpress(MapView view, GeoPoint lonpressLocation);
 	}
 	
@@ -45,40 +60,67 @@ public class TraumaMapView extends MapView
     
     private MotionEvent mEvent;
     
+    /**
+     * Returns a list of Markers that are currently on the map
+     * @return the list of Markers that are currently displayed on the map
+     */
     public MapOverlay getMapOverlay()
 	{
 		return mapOverlay;
 	}
 
+    /**
+     * Initializes the TraumaMapView
+     */
 	private void initObj()
     {
     	drawable = getContext().getResources().getDrawable(R.drawable.pin);
     	mapOverlay = new MapOverlay(drawable, getContext(), this);
     	getOverlays().add(mapOverlay);
     	mapOverlay.wipeOverlay();
-    	//mapOverlay.fill(getCentralPoint());
+    	//TODO: mapOverlay.fill(getCentralPoint());
     	mapOverlay.fillAll();
     	postInvalidate();//
     }
 	
+	/**
+	 * Creates a new instance of the TraumaMapView 
+	 * @param context the context where the MapView is
+	 * @param apiKey the apiKey of the MapView
+	 */
 	public TraumaMapView(Context context, String apiKey)
 	{
 		super(context, apiKey);
 		initObj();
 	}
 	
+	/**
+	 * Creates a new instance of the TraumaMapView
+	 * @param context The context where the map is
+	 * @param attrs a set of attributes that are passed on the that MapView
+	 */
 	public TraumaMapView(Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
 		initObj();
 	}
 	
+	/**
+	 * Creates a new instance of the TraumaMapView
+	 * @param context the context where the MapView is
+	 * @param attrs a set of attributes that are passed on the the MapView
+	 * @param defStyle defStyle of the MapView
+	 */
 	public TraumaMapView(Context context, AttributeSet attrs, int defStyle)
 	{
 		super(context, attrs, defStyle);
 		initObj();
 	}
 	
+	/**
+	 * Sets the OnLongpressListener of the MapView
+	 * @param listener the TraumaMapView.OnLongpressListener that defines what happenes on longpress
+	 */
 	public void setOnLongpressListener(TraumaMapView.OnLongpressListener listener)
 	{
 		this.longpressListener = listener;
@@ -95,7 +137,8 @@ public class TraumaMapView extends MapView
 	}
 	
 	/**
-	 * 
+	 *  Handles the longpress event
+	 * @param event the motion event that occured on the map
 	 */
 	private void handleLongpress(MotionEvent event)
 	{
@@ -162,6 +205,10 @@ public class TraumaMapView extends MapView
 		}
 	}
 	
+	/**
+	 * This method fires when the map is stopped.
+	 * It repopulates the map
+	 */
 	private void onMapStop()
     {
     	//CentralPoint cp = getCentralPoint();
@@ -182,6 +229,10 @@ public class TraumaMapView extends MapView
     	}
     }
 	
+	/**
+	 * Gets the CentralPoint object of the current state of the map.
+	 * @return returns the CentralPoint of the map
+	 */
 	private CentralPoint getCentralPoint()
 	{
 		GeoPoint topLeft = getProjection().fromPixels(0, 0);

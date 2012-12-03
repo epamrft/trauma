@@ -93,6 +93,9 @@ public class MainActivity extends MapActivity
         	Log.i(TAG, "onCreate ended");
     }
     
+    /**
+     * This method initializes the options menu
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -101,6 +104,9 @@ public class MainActivity extends MapActivity
     	return true;
     }
     
+    /**
+     * this event fires when the user selects an item from the options menu
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -131,6 +137,10 @@ public class MainActivity extends MapActivity
     	}
     }
     
+    /**
+     * Shows a new AlertDialog that enables the user to add markers
+     * @param point the GeoPoint that the user wishes to add on the map. Preferably the point where the user longtapped.
+     */
     private void newMarker(final GeoPoint point)
     {
     		Log.i(TAG, "new marker method");
@@ -214,6 +224,10 @@ public class MainActivity extends MapActivity
 		dialog.setTitle("Place a new Marker");
     }
     
+    /**
+     * Checks if the phone has internet connection
+     * @return true if the phone is connected to the internet, false if it is connecting or it's not connected
+     */
     public boolean isOnline()
     {
     	ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -228,6 +242,11 @@ public class MainActivity extends MapActivity
         return false;
     }
     
+    /**
+     * Returns the address from a GeoPoint
+     * @param point the GeoPoint from which the address is parsed
+     * @return the string representation of the GeoPoint's address
+     */
     private String getAddressFromGeoPoint(GeoPoint point)
 	{
 		Geocoder coder = new Geocoder(this, Locale.getDefault());
@@ -251,6 +270,13 @@ public class MainActivity extends MapActivity
 		}
 	}
     
+    /**
+     * Creates a status dialog to show the user if the creation of a marker was successful or not
+     * @param success set it true if the creation was successful, false if not
+     * @param cnt the context where the dialog appears
+     * @param error if the marker creation was unsuccessful, pass the error here
+     * @return returns an AlertDialog which informs the user about the result of the marker creation
+     */
     private AlertDialog createAddStatusDialog(boolean success, Context cnt, String error)
 	{
 		AlertDialog.Builder dialog = new AlertDialog.Builder(cnt);

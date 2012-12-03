@@ -9,12 +9,24 @@ import rft.trauma.android.service.TraumaDataProvider;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.OverlayItem;
 
+/**
+ * A Marker object that can be displayed on a MapView, added to a MapOverlay
+ * @author Nagy Gergo
+ * @version 1.0.0
+ */
 public class Marker extends OverlayItem
 {	
 	private int id;
 	private String message;
 	private IMarkerManager markerManager;
 	
+	/**
+	 * Initialises a new instance of the Marker class
+	 * @param id the id of the marker
+	 * @param point the geopoint that represents the location of the marker
+	 * @param title the title of the marker
+	 * @param message the description of the marker
+	 */
 	public Marker(int id, GeoPoint point, String title, String message)
 	{
 		this(point, title, message);
@@ -22,6 +34,12 @@ public class Marker extends OverlayItem
 		this.markerManager = new MarkerManager(new TraumaDataProvider());
 	}
 	
+	/**
+	 * Initialises a new instance of the Marker class
+	 * @param point the geopoint that represents the location of the marker
+	 * @param title the title of the marker
+	 * @param message the description of the marker
+	 */
 	public Marker(GeoPoint point, String title, String message)
 	{
 		super(point, title, message);
@@ -29,36 +47,61 @@ public class Marker extends OverlayItem
 		this.id = -1;
 	}
 
+	/**
+	 * sends a request to the server to delete the marker
+	 * @throws ServerException thrown if something goes wrong
+	 */
 	public void delete() throws ServerException
 	{
 		markerManager.deleteMarker(this);
 	}
 	
+	/**
+	 * sends a request to the server to edit the marker's description
+	 * @param description the new description of the marker
+	 * @throws ServerException thrown if something goes wrong
+	 */
 	public void edit(String description) throws ServerException
 	{
 		markerManager.editMarker(this, description);
 	}
 	
+	/**
+	 * sends a request to the server to commit the marker
+	 * @throws ServerException thrown if something goes wrong
+	 */
 	public void add() throws ServerException
 	{
 		markerManager.addMarker(this);
 	}
 	
+	/**
+	 * gets the id of the marker
+	 */
 	public int getId()
 	{
 		return id;
 	}
 
+	/**
+	 * sets the id of the marker
+	 */
 	public void setId(int id)
 	{
 		this.id = id;
 	}
 
+	/**
+	 * gets the message of the maker
+	 */
 	public String getMessage()
 	{
 		return message;
 	}
 
+	/**
+	 * sets the message of the marker
+	 */
 	public void setMessage(String message)
 	{
 		this.message = message;

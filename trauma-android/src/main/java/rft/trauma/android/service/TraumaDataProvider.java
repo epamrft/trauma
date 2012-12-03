@@ -22,6 +22,11 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+/**
+ * Sends requests directly to the server
+ * @author Nagy Gergo
+ * @version 1.0.0
+ */
 public class TraumaDataProvider implements IDataProvider
 {
 	private static String serverRoot = "http://trauma.backend.cloudfoundry.com";
@@ -37,6 +42,13 @@ public class TraumaDataProvider implements IDataProvider
 		
 	}
 	
+	/**
+	 * Sends an add marker request to the server
+	 * @param latitude latitude of the marker
+	 * @param longitude longitude of the marker
+	 * @param desc description of the marker
+	 * @throws ServerException thrown if something goes wrong
+	 */
 	@Override
 	public void addMarker(double latitude, double longitude, String desc) throws ServerException
 	{
@@ -87,7 +99,8 @@ public class TraumaDataProvider implements IDataProvider
 	}
 
 	/**
-	 * @throws ServerException
+	 * Gets all the markers from the server
+	 * @throws ServerException thrown if something goes wrong
 	 */
 	@Override
 	public JSONArray getAllMarkers() throws ServerException
@@ -145,7 +158,11 @@ public class TraumaDataProvider implements IDataProvider
 
 	
 	/**
-	 * @throws ServerException
+	 * Gets a certain circle of markers from the server
+	 * @param centralLongitude longitude of the central of the map
+	 * @param centralLatitude latitude of the central of the map
+	 * @param centralRadius radius of the circle
+	 * @throws ServerException throws if something goes wrong
 	 */
 	@Override
 	public JSONArray getMarkers(double centralLongitude, double centralLatitude, double centralRadius) throws ServerException
@@ -203,6 +220,11 @@ public class TraumaDataProvider implements IDataProvider
 		}
 	}
 
+	/**
+	 * Sends a delete marker request to the server
+	 * @param markerID the id of the marker that is about to be deleted
+	 * @throws ServerException thrown if something goes wrong
+	 */
 	@Override
 	public void deleteMarker(int markerID) throws ServerException
 	{
@@ -228,6 +250,12 @@ public class TraumaDataProvider implements IDataProvider
 		}
 	}
 
+	/**
+	 * sends an edit request to the server
+	 * @param markerID the id of the marker that is about to be edited
+	 * @param description the new description of the marker
+	 * @throws ServerException thrown if something goes wrong
+	 */
 	@Override
 	public void editMarker(int markerID, String description) throws ServerException
 	{
