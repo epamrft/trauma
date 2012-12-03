@@ -1,11 +1,20 @@
 package com.epam.pf.trauma.backend.service.domain;
 
+
 public class CentralPoint {
 
 	private float longitude;
 	private float latitude;
 	private float radius;
-
+	/**
+	 * Constructor of CentralPoint
+	 * 
+	 * 
+	 * 
+	 * @param longitude
+	 * @param latitude
+	 * @param radius
+	 */
 	public CentralPoint(float longitude, float latitude, float radius) {
 		super();
 		this.longitude = longitude;
@@ -37,6 +46,14 @@ public class CentralPoint {
 		this.radius = radius;
 	}
 
+	/**Returns TRUE if the marker is in radius
+	 * 
+	 * 
+	 * 
+	 * 
+	 * @param marker
+	 *
+	 */
 	public boolean inRadius(Marker marker) {
 		
 		if (Math.pow(this.latitude-marker.getLatitude(),2) + Math.pow(this.longitude-marker.getLongitude(),2) < Math.pow(this.radius,2))

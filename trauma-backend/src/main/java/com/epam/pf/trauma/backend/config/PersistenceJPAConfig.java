@@ -12,7 +12,9 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
+/**
+ * Java Persistence API configuration class
+ */
 @Configuration
 @ImportResource(value = { "classpath:/META-INF/app-database-context.xml" })
 @EnableTransactionManagement

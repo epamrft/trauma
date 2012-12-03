@@ -32,7 +32,6 @@ public abstract class AbstractJpaDAO<T extends Serializable> {
 
 	public void save(final T entity) {
 		entityManager.persist(entity);
-		// entityManager.flush();
 	}
 
 	public void update(final T entity) {

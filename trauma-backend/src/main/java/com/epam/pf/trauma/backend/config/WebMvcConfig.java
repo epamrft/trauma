@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
+/**
+ * Web MVC configuration class
+ */
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "com.epam.pf.trauma.backend" }, includeFilters = { @Filter(Controller.class) }, excludeFilters = { @Filter(Configuration.class) })

@@ -36,8 +36,10 @@ public class HomeController {
 	 *    
 	 * 
 	 *
-	 * @param  Central point's coordinates and a radius           
-	 * @return Collection of markers
+	 * @param  centrallan	 Central point's latitude 
+	 * @param  centrallon	 Central point's longitude 
+	 * @param  centrallon 	Central point's radius        
+	 * @return 	Collection of markers
 	 */
 	@RequestMapping(value = "/markers", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseStatus( HttpStatus.OK )
@@ -69,7 +71,8 @@ public class HomeController {
 	 *    
 	 * 
 	 *
-	 * @param  Description string           
+	 * @param  id ID of marker to be edited
+	 * @param  desc Description text           
 	 * @return The edited marker
 	 */
 	@RequestMapping(value = "/markers/{id}", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
@@ -84,7 +87,7 @@ public class HomeController {
 	 *    
 	 * 
 	 *
-	 * @param  The markers attributes           
+	 * @param  Marker Marker to be added           
 	 * @return The marker
 	 */
 	@RequestMapping(value = "/markers", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

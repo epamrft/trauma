@@ -25,7 +25,7 @@ public class MarkerService {
 	 *    
 	 * 
 	 *
-	 * @param  Marker to be added          
+	 * @param marker 	 Marker to be added          
 	 * @return The Marker
 	 */
 	public Marker addMarker(Marker marker) {
@@ -37,8 +37,8 @@ public class MarkerService {
 	 *    
 	 * 
 	 *
-	 * @param  Central Point          
-	 * @return Collection of Markers
+	 * @param  centralPoint The Central Point          
+	 * @return markers 	Collection of valid Markers
 	 */
 	public Collection<Marker> getMarkers(CentralPoint centralPoint) {
 		LOGGER.debug("get markers: {}", centralPoint);
@@ -54,7 +54,7 @@ public class MarkerService {
 	 * 
 	 *
 	 *         
-	 * @return Collection of Markers
+	 * @return markers	 Collection of Markers
 	 */
 	public Collection<Marker> getMarkers() {
 		LOGGER.debug("get all markers: {}");
@@ -69,7 +69,7 @@ public class MarkerService {
 	 *    
 	 * 
 	 *
-	 * @param  Marker id         
+	 * @param  id ID of marker to be deleted     
 	 *
 	 */
 	public void deleteMarker(int id) {
@@ -81,7 +81,8 @@ public class MarkerService {
 	 *    
 	 * 
 	 *
-	 * @param  Marker id, Description string         
+	 * @param  id	ID of marker to be edited,
+	 * @param desc	 Description string         
 	 * @return Edited Marker
 	 */
 	public Marker editMarker(int id, String desc) {

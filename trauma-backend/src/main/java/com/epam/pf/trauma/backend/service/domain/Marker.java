@@ -26,6 +26,15 @@ public class Marker implements Serializable {
 		super();
 	}
 
+	/**Constructor of Marker
+	 * 
+	 * 
+	 * 
+	 * 
+	 * @param longitude
+	 * @param latitude
+	 * @param desc
+	 */
 	public Marker(float longitude, float latitude, String desc) {
 		super();
 		this.longitude = longitude;
