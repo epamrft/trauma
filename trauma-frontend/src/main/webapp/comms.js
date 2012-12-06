@@ -1,9 +1,12 @@
+/* Ajax communication utility class */
 var BackendComms = Class.create({
 
   initialize : function(map) {
     this.map=map;
    
   },
+
+/* Sending marker to backend */  
 sendMarker : function () { 
       var self = this;   
       var url = 'http://trauma.backend.cloudfoundry.com/markers';
@@ -22,14 +25,18 @@ sendMarker : function () {
         console.log(transport.responseText);
         $('response').update(transport.responseText);
         var xMarker = $('response').innerHTML.evalJSON();
+        self.map.showMarker(xMarker);
+        self.notifyUser('Marker Placement Success!');
+        self.map.service.effects.hide($('descbox'));
+        self.map.tmpMarker.setMap(null);
         }
 
       });
 
   },
 
-
-  deleteMarker : function () {
+/* Deleting marker from backend */
+deleteMarker : function () {
     var self = this; 
     var url = 'http://trauma.backend.cloudfoundry.com/markers/'+$('actualMarkerID').innerHTML+'?_method=DELETE';
     
@@ -39,15 +46,20 @@ sendMarker : function () {
             onSuccess : function(transport) {
                 console.log(transport.responseText);
                 $('response').update(transport.responseText);
+                self.map.removeMarker();
+                self.notifyUser('Marker Removal Successful!');
+                self.map.service.effects.hide($('editbox'));
+
+
         }
 
     });
 
   },
 
-
-  updateMarker : function () {
-    
+/* Edit marker on backend */
+updateMarker : function () {
+    var self = this;
     var url = 'http://trauma.backend.cloudfoundry.com/markers/'+$('actualMarkerID').innerHTML+'?_method=PUT';
     
         new Ajax.Request(url, {
@@ -58,15 +70,19 @@ sendMarker : function () {
                 console.log(transport.responseText);
                 $('response').update(transport.responseText);
                 var xMarker = $('response').innerHTML.evalJSON();
-                console.log(xMarker.desc);
-                return xMarker.desc;
+                document.getElementById('editBoxDescfield').value = xMarker.desc;
+                self.notifyUser('Marker Updated Successfully!');
+                self.map.removeMarker();
+                self.map.showMarker(xMarker);
+                self.map.service.effects.hide($('editbox'));
+                
         }
     });
 
     },
 
-
-  getMarkers : function (lng,lat,rad,map) {
+/*Gets all markers from backend*/
+getMarkers : function (lng,lat,rad,map) {
 
       var url = 'http://trauma.backend.cloudfoundry.com/markers';
 
@@ -103,10 +119,11 @@ sendMarker : function () {
     
   },
 
+  notifyUser : function (notification){
 
+    var notify = humane.create({container: $('map_canvas'), timeout: 2500, baseCls: 'humane-jackedup'});
+    notify.log(notification);
 
-  /*Marker placing function*/
-
-  
+  }
 
 });

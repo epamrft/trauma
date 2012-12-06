@@ -1,8 +1,14 @@
 var Map = Class.create({
 
+	
+
 	initialize : function(service) {
 		this.service = service;
+		this.actualMarkerOnSelection = null;
+		this.tmpMarker = null;
 	},
+
+	
 
 	init : function(element, p) {
 
@@ -36,16 +42,16 @@ var Map = Class.create({
 
 		google.maps.event.addListener(this.map, 'dragend', function() {
 
-			
+		console.log(self.getVisbleBounds(self.map));
 		var url = 'http://trauma.backend.cloudfoundry.com/markers';
 
       	var data = {
             "central-lng" : self.map.getCenter().lng(),
             "central-lan" : self.map.getCenter().lat(),
-            "central-rad" : 5.00
+            "central-rad" : self.getVisbleBounds(self.map)
         };
 
-
+        
       	new Ajax.Request(url, {
       	method: 'GET',
       	parameters: Object.toJSON(data),
@@ -118,8 +124,8 @@ var Map = Class.create({
 				break;
 			case 'add_marker_map':
 
-				console.log("Marker Added.");
 				self.service.addMarkerListener(self, latLng);
+				self.indicateMarkerPlacement(self,latLng);
 				break;
 			}
 
@@ -143,12 +149,12 @@ var Map = Class.create({
 		return marker;
 	},
 
-	removeMarker : function(marker) {
-		marker.setMap(null);
+	removeMarker : function() {
+		this.actualMarkerOnSelection.setMap(null);
 	},
 
 	onMarkerClick : function (marker,geocoder){
-
+		var self = this;
 		google.maps.event.addListener(marker, 'click', function() {
 
 
@@ -161,6 +167,13 @@ var Map = Class.create({
       	effect.show('editbox', function() {
 		effect.focus('editBoxDescfield');			
 			});
+
+      	if(self.actualMarkerOnSelection)
+      	{self.actualMarkerOnSelection.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');}
+      	self.actualMarkerOnSelection = marker;
+      	self.actualMarkerOnSelection.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+
+      	
 
     	});
 
@@ -179,8 +192,8 @@ var Map = Class.create({
         	var editLocBox = document.getElementById('editBoxGeoloc');
 				if (geoLocBox)
 				{
-				editLocBox.value = results[0].formatted_address;
-				geoLocBox.value = results[0].formatted_address;
+				editLocBox.innerHTML = results[0].formatted_address;
+				geoLocBox.innerHTML = results[0].formatted_address;
 				}
 
 				document.getElementById("lat").innerHTML=latLng.lat(); 
@@ -197,9 +210,24 @@ var Map = Class.create({
 	},
 
 
-	getMid : function (){
+	indicateMarkerPlacement : function (map,latLng){
 
-		return this.map.getCenter();
+		if(this.tmpMarker){
+				this.tmpMarker.setMap(null);
+				}
+
+		var marker = new google.maps.Marker({
+			position: latLng,
+			map: this.map   
+		});
+		marker.setMap(this.map);
+		this.tmpMarker = marker;
+      	this.tmpMarker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+	},
+
+	getVisbleBounds : function (map){
+
+		return this.map.getBounds().getNorthEast().lat() - this.map.getBounds().getSouthWest().lat();
 
 	}
 
